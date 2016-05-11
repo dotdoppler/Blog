@@ -1,0 +1,190 @@
+html{
+	font-size: 100%;
+}
+
+body {
+	background: #efefef;
+	font: 300 1em/1.8 "Helvetica Neue",Helvetica, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans;
+	/*-webkit-font-smoothing: antialiased;
+	/*font-size: 1em;
+	line-height: 1.8;
+	font-weight: 300;*/
+}
+
+/* override typo css */
+.typo a{
+	color: #337ab7;
+}
+
+hr{
+ border-color: #eee;
+}
+
+/* end */
+
+pre{
+	background: #F9F9F9;
+	border-radius: 3px;
+	border-color: #eee;
+	font-size: 0.8em;
+	line-height: 1.55;
+	overflow: auto;
+	word-break: keep-all;
+	word-wrap: normal;
+}
+
+.navbar{
+	z-index: 100;
+}
+
+.navbar li a{
+	color: #eee;
+	font-size: 0.8em;
+}
+
+.nav>li>a:focus, .nav>li>a:hover{
+	background: none;
+	color: #fff;
+}
+
+@media screen and (max-width: 480px) {
+	#navbar{
+		text-align: center;
+	}
+	.nav>li{
+		display: inline-block;
+	}
+}
+
+.main-container{
+	margin-top: 330px;
+	padding-top: 60px;
+	max-width: 840px;
+}
+
+form input, form button{
+	margin-top: 10px;
+}
+
+
+.header-title{
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 400px;
+	width: 100%;
+	display: table;
+	background-color: #159957;
+  background-image: linear-gradient(120deg, #155799, #159957);
+}
+
+.header-title h1 {
+	color: #fff;
+}
+
+.header-title p{
+	font-size: 0.9em;
+	color: #eee;
+}
+
+.header-title-wrapper{
+	display: table-cell;
+  vertical-align: middle;
+  margin: 0 auto;
+  text-align: center;
+	color: #fff;
+}
+
+
+.post{
+	padding: 50px 80px;
+	margin-bottom: 30px;
+	background-color: #fff;
+	box-shadow: 0 0 0 0,0 6px 12px rgba(34,34,34,0.1);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+@media screen and (max-width: 480px) {
+	.post{
+		padding: 30px 10px;
+	}
+	.post h2.title, .post .meta{
+		text-align: center;
+	}
+}
+
+
+.post .meta, .typo .post .meta{
+	color: rgba(187,187,187,0.8);
+	font-size: 0.9em;
+}
+
+.post h1 > a, .post h2 > a, .post h3 > a, .post h4 > a{
+	color: #333;
+	text-decoration: none;
+}
+
+.post h2.title{
+	margin-bottom: 20px;
+	margin-top: 15px;
+}
+
+
+.post h2.title a:hover, .post h2.title a:focus{
+	color: #555;
+}
+
+.post .info{
+	margin-top: 30px;
+	text-align: center;
+	color: #888;
+	font-size: 0.9em;
+}
+
+.post .comments{
+	margin-top: 30px;
+	padding-top: 30px;
+	border-top: 1px #eee solid;
+}
+
+.post ul.tags{
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.post ul.tags li{
+	display: inline-block;
+	list-style: none;
+	margin-left: 10px;
+}
+
+ul.archive-list li span.month{
+	width: 60px;
+	display: inline-block;
+}
+
+ul.tags li{
+	margin: 5px 10px;
+}
+
+.footer{
+	text-align: center;
+	margin-bottom: 50px;
+	font-size: 0.9em;
+}
+
+.footer p, .typo .footer p {
+	margin-bottom: 0.4em;
+}
+
+.footer-wrapper{
+	display: block;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.footer-wrapper hr{
+	border-color: #C7C7C7;
+}

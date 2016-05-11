@@ -1,0 +1,17 @@
+html
+html(lang="en")
+  head
+    include head 
+    block head 
+    
+  body.typo
+    include navbar 
+    
+    include top
+                
+    .container.main-container
+      block content
+
+    include footer
+
+
