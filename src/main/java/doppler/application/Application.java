@@ -9,9 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan("doppler")
-public class app  extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter{
+public class Application extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter{
 
     public static void main(String[] args) {
-        SpringApplication.run(app.class);
+        SpringApplication.run(Application.class);
     }
 }
