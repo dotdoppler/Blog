@@ -1,17 +1,13 @@
-html
+doctype  html
 html(lang="en")
-  head
-    include head 
-    block head 
-    
-  body.typo
-    include navbar 
-    
-    include top
-                
-    .container.main-container
-      block content
+    head
+        include head
+    body
+        div#menu
+            include menu
+        div#main
+            block content
 
-    include footer
+
 
 

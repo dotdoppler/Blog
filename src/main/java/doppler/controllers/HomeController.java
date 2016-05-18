@@ -10,8 +10,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
  */
 @Controller
 public class HomeController {
-    @RequestMapping(value = "", method = GET)
+    @RequestMapping(value = {"","home"}, method = GET)
     public String index(){
         return "home/index";
+    }
+    @RequestMapping(value = "1")
+    public String index2(){
+
+        return "view/index.html";
     }
 }
