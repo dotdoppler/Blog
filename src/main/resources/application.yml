@@ -1,2 +1,16 @@
-logging:
-  level: debug
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      uri: mongodb://localhost/testdb/
+      database: testdb
+#      username: admin
+#      password: root
+      repositories:
+        enabled: true
+  jade4j:
+      caching: false
+security:
+  basic:
+    authorize-mode: NONE
