@@ -1,4 +1,4 @@
-package doppler.admin;
+package com.doppler.blog.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +12,6 @@ public class UserController {
 
     @RequestMapping("signin")
     public String signin(Principal principal, RedirectAttributes ra) {
-        return principal == null ? "users/signin" : "redirect:/";
+        return principal == null ? "admin/users/signin" : "redirect:/";
     }
 }

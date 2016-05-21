@@ -1,20 +1,9 @@
 /**
  * Created by doppler on 2016/5/19.
  */
-function Hello($scope){
-}
 function hello(){
-    var email = $("#email").val();
-    var pwd = $("#password").val();
-    $.ajax({
-        type : "POST",
-        url : "insert",
-        data: {
-            "email" : email,
-            "pwd" : pwd
-        },
-        success : function(data){
-            console.log(data);
-        }
-    });
+    $("#email").val(hex_md5($("#email").val().trim()));
+    //$("password").val(hex_md5(hex_md5($("#password").val().trim())));
+    $("#password").val(hex_md5($("#password").val().trim()));
+    $("#myForm").submit();
 }

@@ -1,0 +1,20 @@
+extends ../../layout/app
+
+block content
+  div.content
+    div
+      form.pure-form.pure-form-stacked#myForm(method="post",action="/authenticate")
+        fieldset
+          legend Administrator
+          label(for="email") Email
+          input#email(type="email",name="username")
+
+          label(for="password") Password
+          input#password(type="password",name="password")
+
+        button.pure-button.pure-button-primary(type="button",onclick="hello()") Sign in
+  script(src="/js/md5.js")
+
+
+
+  

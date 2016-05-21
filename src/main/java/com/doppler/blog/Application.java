@@ -1,4 +1,4 @@
-package doppler.application;
+package com.doppler.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan("doppler")
+@ComponentScan("com.doppler.blog")
 public class Application extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter{
 
     public static void main(String[] args) {
