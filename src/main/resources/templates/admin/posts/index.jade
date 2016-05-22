@@ -20,48 +20,48 @@ block content
             th Updated At 
             th.operations Operations
           
-        tbody
-          for post in posts 
-            tr
-              td #{post.getId()}
-              td #{post.getTitle()}
-              td #{post.getPostFormat()}
-              td #{post.getPostStatus()}
-              td #{post.getPermalink()}
-              td #{post.getCreatedAt()}
-              td #{post.getUpdatedAt()}
-              td.operations 
-                a.btn.btn-xs.btn-info(href="/posts/#{post.getId()}", target:'_blank')
-                  i.fa.fa-eye
-                a.btn.btn-xs.btn-primary(href="/admin/posts/#{post.getId()}/edit")
-                  i.fa.fa-edit
-                a.btn.btn-xs.btn-danger.btn-delete(href="javascript:deletePost(#{post.id})", postId="#{post.id}")
-                  i.fa.fa-trash-o
-                  
-                form(id="form-#{post.getId()}",style="visibility: hidden", method="post", action="/admin/posts/#{post.getId()}/delete")
-                  input(type="hidden", name='_csrf', value='#{_csrf.token}')
-      .col-sm-12
-        div#pagination
-  script 
-    function deletePost(postId){
-      if (confirm("Are you sure to delete post @"+postId)) {
-        $('#form-'+postId).submit();
-      }
-    }
-    
-    $(function(){
-      var page = #{page};
-      
-      // Use bootstrap paginator
-      // Ref. http://lyonlai.github.io/bootstrap-paginator/
-      if(page>1){
-        var options = {
-            currentPage: #{page} + 1,
-            totalPages: #{totalPages},
-            pageUrl: function(type, page, current){
-                return document.location.pathname+'?page='+page;
-            }
-        }
-        $('#pagination').bootstrapPaginator(options);
-      }
-    });
+  //      tbody
+  //        for post in posts
+  //          tr
+  //            td #{post.getId()}
+  //            td #{post.getTitle()}
+  //            td #{post.getPostFormat()}
+  //            td #{post.getPostStatus()}
+  //            td #{post.getPermalink()}
+  //            td #{post.getCreatedAt()}
+  //            td #{post.getUpdatedAt()}
+  //            td.operations
+  //              a.btn.btn-xs.btn-info(href="/posts/#{post.getId()}", target:'_blank')
+  //                i.fa.fa-eye
+  //              a.btn.btn-xs.btn-primary(href="/admin/posts/#{post.getId()}/edit")
+  //                i.fa.fa-edit
+  //              a.btn.btn-xs.btn-danger.btn-delete(href="javascript:deletePost(#{post.id})", postId="#{post.id}")
+  //                i.fa.fa-trash-o
+  //
+  //              form(id="form-#{post.getId()}",style="visibility: hidden", method="post", action="/admin/posts/#{post.getId()}/delete")
+  //                input(type="hidden", name='_csrf', value='#{_csrf.token}')
+  //    .col-sm-12
+  //      div#pagination
+  //script
+  //  function deletePost(postId){
+  //    if (confirm("Are you sure to delete post @"+postId)) {
+  //      $('#form-'+postId).submit();
+  //    }
+  //  }
+  //
+  //  $(function(){
+  //    var page = #{page};
+  //
+  //    // Use bootstrap paginator
+  //    // Ref. http://lyonlai.github.io/bootstrap-paginator/
+  //    if(page>1){
+  //      var options = {
+  //          currentPage: #{page} + 1,
+  //          totalPages: #{totalPages},
+  //          pageUrl: function(type, page, current){
+  //              return document.location.pathname+'?page='+page;
+  //          }
+  //      }
+  //      $('#pagination').bootstrapPaginator(options);
+  //    }
+  //  });
