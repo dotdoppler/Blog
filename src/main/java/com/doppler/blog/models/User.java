@@ -18,6 +18,9 @@ public class User {
     @JsonIgnore
     private String password;
 
+
+
+
     public String getName() {
         return name;
     }

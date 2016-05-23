@@ -1,5 +1,4 @@
 extends ../layout/admin
-
 block head
   script(src="/webjars/ace/1.2.0/src-min/ace.js")
   script(src="/webjars/ace/1.2.0/src-min/theme-github.js")
@@ -48,7 +47,7 @@ block content
           input.form-control(name="postTags", value="#{postForm.getPostTags()}")
     .item-row
       hr
-      button.btn.btn-primary.btn-block(type="submit") Create new post
+      button.pure-button.pure-button-primary(type="submit") Create new post
 
   script
     var editor = ace.edit("content-editor");
