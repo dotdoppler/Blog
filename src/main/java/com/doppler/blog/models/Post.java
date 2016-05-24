@@ -5,7 +5,6 @@ import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.models.support.PostType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.util.StringUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +30,7 @@ public class Post {
 
     private PostType postType = PostType.POST;
 
-    private String permalink;
+
     private Set<Tag> tags = new HashSet<Tag>();
 
     public String getId() {
@@ -49,10 +48,7 @@ public class Post {
         return getContent();
     }
 
-    public void setPermalink(String permalink){
-        String token = permalink.toLowerCase().replace("\n", " ").replaceAll("[^a-z\\d\\s]", " ");
-        this.permalink = StringUtils.arrayToDelimitedString(StringUtils.tokenizeToStringArray(token, " "), "-");
-    }
+
 
     public User getUser() {
         return user;
@@ -62,9 +58,6 @@ public class Post {
         this.user = user;
     }
 
-    public String getPermalink() {
-        return permalink;
-    }
 
     public PostType getPostType() {
         return postType;

@@ -1,0 +1,11 @@
+extends ../layout/app
+block head
+    link(rel='stylesheet', type='text/css', href='/css/pure/blog.css')
+block content
+    div.content
+        .posts
+            section.post
+                h2.post-title #{post.getTitle()}
+                p.post-meta 2016-05-24 23:10:49
+            div.post-description
+                p !{post.getRenderedContent()}

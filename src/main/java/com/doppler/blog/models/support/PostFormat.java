@@ -1,8 +1,6 @@
 package com.doppler.blog.models.support;
 
-/**
- * @author Raysmond<i@raysmond.com>
- */
+
 public enum PostFormat {
     HTML("Html"),
     MARKDOWN("Markdown");

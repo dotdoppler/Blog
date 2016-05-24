@@ -3,31 +3,23 @@ package com.doppler.blog.forms;
 import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * @author Raysmond<i@raysmond.com>
- */
+
 @Data
 public class PostForm {
-    @NotEmpty
+    @NotNull
     private String title;
-
-    @NotEmpty
+    @NotNull
     private String content;
 
-    @NotNull
     private PostFormat postFormat;
 
-    @NotNull
     private PostStatus postStatus;
 
-    @NotNull
     private String permalink;
 
-    @NotNull
     private String postTags;
 
     public String getTitle() {

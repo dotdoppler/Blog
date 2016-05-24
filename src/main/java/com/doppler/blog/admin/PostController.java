@@ -18,7 +18,7 @@ import javax.validation.Valid;
 /**
  * Created by doppler on 2016/5/22.
  */
-@Controller
+@Controller("adminPostController")
 @RequestMapping("admin/posts")
 public class PostController {
     @Autowired

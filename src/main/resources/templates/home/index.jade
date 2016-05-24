@@ -4,6 +4,12 @@ block content
         h1 Page Title
         h2 A subtitle for your page goes here
     div.content
-        h2.content-subhead How to use this layout
-        p To use this layout, you can just copy paste the HTML, along with the CSS in <a href="/css/layouts/side-menu.css" alt="Side Menu CSS">side-menu.css</a>, and the JavaScript in <a href="/js/ui.js">ui.js</a>. The JS file uses vanilla JavaScript to simply toggle an <code>active</code> class that makes the menu responsive.
+        h2.content-subhead Building....
+        p  some bla bla bla
         img.pure-img(src="/images/building.jpg")
+    for post in posts
+        div.content
+            h2.content-subhead #{post.getTitle()}
+            p !{post.getRenderedContent()}
+
+
