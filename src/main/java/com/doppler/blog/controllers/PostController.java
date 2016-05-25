@@ -21,7 +21,7 @@ public class PostController {
     PostService postService;
     @RequestMapping(value = "archive",method = RequestMethod.GET)
     public String archive(Model model){
-        List<Post> posts =  postService.getPulishedPosts();
+        List<Post> posts =  postService.getPublishedPosts();
         model.addAttribute("posts" , posts);
         return "posts/archive";
     }

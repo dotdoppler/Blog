@@ -10,10 +10,13 @@ import com.doppler.blog.utils.DTOUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by doppler on 2016/5/22.
@@ -24,7 +27,10 @@ public class PostController {
     @Autowired
     PostService postService;
     @RequestMapping(value = "",method = RequestMethod.GET)
-    public String index(){
+    public String index(Model model){
+        List<Post> posts = postService.findAllPosts();
+        model.addAttribute("posts",posts);
+
         return "admin/posts/index";
     }
 
@@ -38,6 +44,18 @@ public class PostController {
 
         return "redirect:/admin/posts";
     }
+    @RequestMapping(value = "{postId}",method = RequestMethod.DELETE)
+    public @ResponseBody String deletePost(@PathVariable String postId){
+        postService.deletePost(postId);
+        return null;
+    }
+    @RequestMapping(value = "{postId}",method = {RequestMethod.POST,RequestMethod.PUT})
+    public  String updatePost(@PathVariable String postId,@Valid PostForm postForm){
+        Post post = postService.getById(postId);
+        DTOUtil.mapTo(postForm, post);
+        postService.updatePost(post);
+        return "redirect:/posts/" + postId;
+    }
 
     @RequestMapping(value = "new",method = RequestMethod.GET)
     public String newPost(Model model){
@@ -48,5 +66,18 @@ public class PostController {
         model.addAttribute("postFormats", PostFormat.values());
         model.addAttribute("postStatus", PostStatus.values());
         return "admin/posts/new";
+    }
+
+    @RequestMapping(value = "{postId}/edit")
+    public String editPost(@PathVariable String postId, Model model){
+        Post post = postService.getById(postId);
+        PostForm postForm = DTOUtil.map(post, PostForm.class);
+
+        model.addAttribute("post", post);
+        model.addAttribute("postForm", postForm);
+        model.addAttribute("postFormats", PostFormat.values());
+        model.addAttribute("postStatus", PostStatus.values());
+
+        return "admin/posts/edit";
     }
 }

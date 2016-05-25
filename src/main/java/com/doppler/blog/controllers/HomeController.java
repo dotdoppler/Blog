@@ -21,7 +21,7 @@ public class HomeController {
 
     @RequestMapping(value = {"","home"}, method = GET)
     public String index(Model model){
-        List<Post> posts = postService.getPulishedPosts();
+        List<Post> posts = postService.getPublishedPosts();
         model.addAttribute("posts",posts);
         return "home/index";
     }

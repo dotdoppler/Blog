@@ -10,9 +10,13 @@ import java.util.List;
 /**
  * Created by doppler on 2016/5/23.
  */
-public interface PostRepository extends MongoRepository<Post,String> {
+public interface PostRepository  extends MongoRepository<Post,String> {
 
-    Post findById(String postId);
+    @Override
+    Post findOne(String postId);
+
+    @Override
+    void delete(String postId);
 
     @Query("{'postStatus' : ?0}")
     List<Post> findAllPostsByStatus(PostStatus postStatus);

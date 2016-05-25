@@ -4,14 +4,12 @@ import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
-
 
 @Data
 public class PostForm {
-    @NotNull
+
     private String title;
-    @NotNull
+
     private String content;
 
     private PostFormat postFormat;

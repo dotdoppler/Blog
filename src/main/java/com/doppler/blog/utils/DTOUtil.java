@@ -6,9 +6,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Raysmond<i@raysmond.com>
- */
+
 public class DTOUtil {
 
     private static ModelMapper MAPPER = null;
