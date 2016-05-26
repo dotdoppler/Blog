@@ -1,12 +1,10 @@
 doctype html
 html(lang="en")
-  head
-    include head 
-    block head 
-    
-  body
-    #layout
-      include menu
-      .content
-        include message
-        block content
+    head
+        include head
+        block head
+    body
+        #layout
+            include menu
+            div#main
+            block content

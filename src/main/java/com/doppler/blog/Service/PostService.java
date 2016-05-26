@@ -1,9 +1,11 @@
 package com.doppler.blog.Service;
 
 import com.doppler.blog.models.Post;
+import com.doppler.blog.models.RecentPosts;
 import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.repositories.PostRepository;
+import com.doppler.blog.repositories.RecentPostsRepository;
 import com.doppler.blog.utils.Markdown;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -19,12 +21,18 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
     @Autowired
+    private RecentPostsRepository recentPostsRepository;
+    @Autowired
     MongoOperations mongoOperations;
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
-        return postRepository.insert(post);
+        post = postRepository.insert(post);
+        RecentPosts recentPosts = new RecentPosts();
+        recentPosts.setPostId(post.getId());
+        recentPostsRepository.insert(recentPosts);
+        return post;
     }
     public List<Post> getPublishedPosts(){
         return postRepository.findAllPostsByStatus(PostStatus.PUBLISHED);

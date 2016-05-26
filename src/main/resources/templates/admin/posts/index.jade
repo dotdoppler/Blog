@@ -1,59 +1,44 @@
 extends ../layout/admin
 
 block content
-  h1 Posts
-  hr
-  
-  a.pure-button.pure-button-primary(href="/admin/posts/new") Create
+  div.content
+    h1 Posts
+    hr
 
-  .row(style="margin-top: 10px;")
-    .col-sm-12
-      table.pure-table.pure-table-bordered
-        thead
-          tr
-            th ID
-            th Title 
-            th Format 
-            th Status
-            //th Created At
-            //th Updated At
-            th.operations Operations
-          
-        tbody
-          for post in posts
-            tr
-              td #{post.getId()}
-              td #{post.getTitle()}
-              td #{post.getPostFormat()}
-              td #{post.getPostStatus()}
-              //td #{post.getCreatedAt()}
-              //td #{post.getUpdatedAt()}
-              td.operations
-                a.btn.btn-xs.btn-info.btn-flat(href="/posts/#{post.getId()}", target:'_blank')
-                  i.fa.fa-eye
-                a.btn.btn-xs.btn-primary.btn-flat(href="/admin/posts/#{post.getId()}/edit")
-                  i.fa.fa-edit
-                a.btn.btn-xs.btn-danger.btn-delete.btn-flat(href="javascript:;", onclick="deletePost('#{post.getId()}')")
-                  i.fa.fa-trash-o
+    a.pure-button.pure-button-primary(href="/admin/posts/new") Create
 
-
+    .row(style="margin-top: 10px;")
       .col-sm-12
-        div#pagination
+        table.pure-table.pure-table-bordered
+          thead
+            tr
+              th ID
+              th Title
+              th Format
+              th Status
+              //th Created At
+              //th Updated At
+              th.operations Operations
+
+          tbody
+            for post in posts
+              tr
+                td #{post.getId()}
+                td #{post.getTitle()}
+                td #{post.getPostFormat()}
+                td #{post.getPostStatus()}
+                //td #{post.getCreatedAt()}
+                //td #{post.getUpdatedAt()}
+                td.operations
+                  a.btn.btn-xs.btn-info.btn-flat(href="/posts/#{post.getId()}", target:'_blank')
+                    i.fa.fa-eye
+                  a.btn.btn-xs.btn-primary.btn-flat(href="/admin/posts/#{post.getId()}/edit")
+                    i.fa.fa-edit
+                  a.btn.btn-xs.btn-danger.btn-delete.btn-flat(href="javascript:;", onclick="deletePost('#{post.getId()}')")
+                    i.fa.fa-trash-o
 
 
-    //$(function(){
-    //  var page = #{page};
-    //
-    //  // Use bootstrap paginator
-    //  // Ref. http://lyonlai.github.io/bootstrap-paginator/
-    //  if(page>1){
-    //    var options = {
-    //        currentPage: #{page} + 1,
-    //        totalPages: #{totalPages},
-    //        pageUrl: function(type, page, current){
-    //            return document.location.pathname+'?page='+page;
-    //        }
-    //    }
-    //    $('#pagination').bootstrapPaginator(options);
-    //  }
-    //});
+        .col-sm-12
+          div#pagination
+
+
