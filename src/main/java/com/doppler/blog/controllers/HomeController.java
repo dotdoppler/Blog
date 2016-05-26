@@ -22,7 +22,9 @@ public class HomeController {
     @RequestMapping(value = {"","home"}, method = GET)
     public String index(Model model){
         List<Post> posts = postService.getPublishedPosts();
+        List<Post> recentPosts = postService.getRecentPosts();
         model.addAttribute("posts",posts);
+        model.addAttribute("recentPosts",recentPosts);
         return "home/index";
     }
 }

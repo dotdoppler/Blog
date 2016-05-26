@@ -1,15 +1,18 @@
 extends ../layout/app
 block content
-    div.header
-        h1 Page Title
-        h2 A subtitle for your page goes here
-    div.content
-        h2.content-subhead Building....
-        p  some bla bla bla
-        img.pure-img(src="/images/building.jpg")
-    for post in posts
-        div.content
-            h2.content-subhead #{post.getTitle()}
-            p !{post.getRenderedContent()}
+    div.content#main
+        div.header
+            h1 Page Title
+            h3 A subtitle for your page goes here
+        div.content(style="text-align:center;")
+            br
+            img.img-rounded(src="/images/building.jpg")
+        h1.content-subhead RECENT POSTS
+            for post in recentPosts
+                h2
+                    a.pure-menu-link(href="/posts/#{post.getId()}")
+                        = post.getTitle()
+
+
 
 

@@ -1,9 +1,10 @@
 extends ../layout/app
 block content
-    div.header
-        h1 All Posts
-    for post in posts
-        div.content
-            h2.content-subhead
-                a.pure-menu-link(href="/posts/#{post.getId()}")
-                    = post.getTitle()
+    .content
+        div.header
+            h1 All Posts
+        for post in posts
+            div.content
+                h2
+                    a.pure-menu-link(href="/posts/#{post.getId()}")
+                        = post.getTitle()

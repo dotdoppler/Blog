@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,5 +54,15 @@ public class PostService {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
         mongoOperations.save(post);
+    }
+    public List<Post> getRecentPosts(){
+        List<Post> recentPosts = null;
+        List<RecentPosts> list = recentPostsRepository.findAll();
+        if (list.size() > 0){
+            recentPosts = new ArrayList<Post>();
+            for(int i = list.size() - 1;i > -1;i--)
+                recentPosts.add(postRepository.findOne(list.get(i).getPostId()));
+        }
+        return recentPosts;
     }
 }
