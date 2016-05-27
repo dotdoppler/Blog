@@ -54,7 +54,8 @@ public class PostController {
         Post post = postService.getById(postId);
         DTOUtil.mapTo(postForm, post);
         postService.updatePost(post);
-        return "redirect:/posts/" + postId;
+        //return "redirect:/posts/" + postId;
+        return  "redirect:/admin/posts";
     }
 
     @RequestMapping(value = "new",method = RequestMethod.GET)

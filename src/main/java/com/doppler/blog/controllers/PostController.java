@@ -22,12 +22,13 @@ public class PostController {
     @RequestMapping(value = "archive",method = RequestMethod.GET)
     public String archive(Model model){
         List<Post> posts =  postService.getPublishedPosts();
-        model.addAttribute("posts" , posts);
+        model.addAttribute("posts", posts);
+
         return "posts/archive";
     }
-    @RequestMapping(value = "{postId}",method = RequestMethod.GET)
-    public String showPosts(@PathVariable String postId, Model model){
-        Post post = postService.getById(postId);
+    @RequestMapping(value = "{postLink}",method = RequestMethod.GET)
+    public String showPosts(@PathVariable String postLink, Model model){
+        Post post = postService.getByLink(postLink);
         model.addAttribute("post",post);
         return "posts/post";
     }

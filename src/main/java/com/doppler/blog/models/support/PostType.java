@@ -1,8 +1,5 @@
 package com.doppler.blog.models.support;
 
-/**
- * @author Raysmond<i@raysmond.com>
- */
 public enum PostType {
     PAGE("Page"),
     POST("Post");

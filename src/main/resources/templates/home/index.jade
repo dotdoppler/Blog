@@ -3,16 +3,19 @@ block content
     div.content#main
         div.header
             h1 Page Title
-            h3 A subtitle for your page goes here
+            h2 A subtitle for your page goes here
         div.content(style="text-align:center;")
             br
-            img.img-rounded(src="/images/building.jpg")
+            img.img-rounded(src="/images/building.jpg",width="85%",height="50%")
         h1.content-subhead RECENT POSTS
             for post in recentPosts
                 h2
-                    a.pure-menu-link(href="/posts/#{post.getId()}")
+                    a.pure-menu-link(href="/posts/#{post.getLink()}")
                         = post.getTitle()
-
+        div(style="text-align:center;")
+            a.btn-flat.pure-button.button-small(href="/posts/archive") More
+    div.footer
+        p.legal-copyright &copy; doppler
 
 
 

@@ -16,7 +16,7 @@ public class PostForm {
 
     private PostStatus postStatus;
 
-    private String permalink;
+    private String link;
 
     private String postTags;
 
@@ -52,12 +52,12 @@ public class PostForm {
         this.postStatus = postStatus;
     }
 
-    public String getPermalink() {
-        return permalink;
+    public String getLink() {
+        return link;
     }
 
-    public void setPermalink(String permalink) {
-        this.permalink = permalink;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getPostTags() {
