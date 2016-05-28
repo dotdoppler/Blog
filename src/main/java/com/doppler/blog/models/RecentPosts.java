@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * Created by doppler on 2016/5/26.
- * capped collection "recent_posts" with 3 postId at most
+ * capped collection "recent_posts" with 3 documents at most
  * db.createCollection("recent_posts",{"capped" : true, "size" : 512, "max" : 3})
 
  *

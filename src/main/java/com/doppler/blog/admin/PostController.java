@@ -7,7 +7,6 @@ import com.doppler.blog.models.User;
 import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.utils.DTOUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -24,7 +24,7 @@ import java.util.List;
 @Controller("adminPostController")
 @RequestMapping("admin/posts")
 public class PostController {
-    @Autowired
+    @Resource
     PostService postService;
     @RequestMapping(value = "",method = RequestMethod.GET)
     public String index(Model model){

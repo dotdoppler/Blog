@@ -1,9 +1,21 @@
 package com.doppler.blog.Service;
 
-import java.io.Serializable;
+import com.doppler.blog.models.Setting;
+import com.doppler.blog.repositories.SettingRepository;
+import org.springframework.stereotype.Service;
 
-public interface SettingService {
-    Serializable get(String key);
-    Serializable get(String key, Serializable defaultValue);
-    void put(String key, Serializable value);
+import javax.annotation.Resource;
+
+@Service
+public class SettingService {
+    @Resource
+    SettingRepository settingRepository;
+
+    public Setting getSetting(){
+        return settingRepository.findAll().get(0);
+    }
+
+    public  Setting updateSetting(Setting setting) {
+       return settingRepository.insert(setting);
+    }
 }

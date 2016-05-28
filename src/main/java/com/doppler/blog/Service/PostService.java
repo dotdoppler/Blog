@@ -7,7 +7,6 @@ import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.repositories.PostRepository;
 import com.doppler.blog.repositories.RecentPostsRepository;
 import com.doppler.blog.utils.Markdown;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +23,11 @@ import java.util.List;
  */
 @Service
 public class PostService {
-    @Autowired
+    @Resource
     private PostRepository postRepository;
-    @Autowired
+    @Resource
     private RecentPostsRepository recentPostsRepository;
-    @Autowired
+    @Resource
     MongoOperations mongoOperations;
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {

@@ -51,7 +51,8 @@ public class ViewHelper {
     }
 
     public String metaTitle(String title){
-        return title + " · " + appSetting.getSiteName();
+        return title + " · " + "Blog";
+        //return title + " · " + appSetting.getSiteName();
     }
 
     public String getApplicationEnv() {

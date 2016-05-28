@@ -2,11 +2,13 @@ extends ../layout/app
 block content
     div.content#main
         div.header
-            h1 Page Title
-            h2 A subtitle for your page goes here
+            h1 #{settings.getSiteName()}
+            h2 #{settings.getSlogan()}
         div.content(style="text-align:center;")
             br
-            img.img-rounded(src="/images/building.jpg",width="85%",height="50%")
+            img.pure-img-responsive(src="/images/cover.jpg")
+        h1.content-subhead Notification
+            h2.pure-menu-link #{settings.getNotification()}
         h1.content-subhead RECENT POSTS
             for post in recentPosts
                 h2
