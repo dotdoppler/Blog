@@ -1,9 +1,10 @@
 extends ../layout/app
 block content
     div.content
+        br
         .posts
             section.post
                 h2.post-title.text-center #{post.getTitle()}
-                p.post-meta 2016-05-24 23:10:49
+                p.post-meta  #{post.getCreatedAt()}
             div.post-description
                 p !{post.getRenderedContent()}

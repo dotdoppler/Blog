@@ -1,6 +1,5 @@
 package com.doppler.blog.models;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -13,9 +12,7 @@ import javax.validation.constraints.NotNull;
  * Created by doppler on 2016/5/28.
  */
 @Document(collection = "setting")
-public class Setting {
-    @Id
-    private  String id;
+public class Setting extends BaseModel {
 
     @NotNull
     @Field(value = "siteName")

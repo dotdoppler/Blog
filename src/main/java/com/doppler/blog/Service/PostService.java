@@ -6,6 +6,7 @@ import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.repositories.PostRepository;
 import com.doppler.blog.repositories.RecentPostsRepository;
+import com.doppler.blog.utils.DateFomater;
 import com.doppler.blog.utils.Markdown;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,10 +35,9 @@ public class PostService {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
+        post.setCreatedAt(DateFomater.format(new Date()));
         post = postRepository.insert(post);
-        RecentPosts recentPosts = new RecentPosts();
-        recentPosts.setPostId(post.getId());
-        recentPostsRepository.insert(recentPosts);
+        recentPostsRepository.insert(new RecentPosts(post.getId()));
         return post;
     }
     public List<Post> getPublishedPosts(){
@@ -66,6 +67,8 @@ public class PostService {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
+        post.setUpdatedAt(DateFomater.format(new Date()));
+        recentPostsRepository.insert(new RecentPosts(post.getId()));
         mongoOperations.save(post);
     }
     public List<Post> getRecentPosts(){

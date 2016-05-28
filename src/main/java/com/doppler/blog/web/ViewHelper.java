@@ -2,12 +2,12 @@ package com.doppler.blog.web;
 
 
 import com.domingosuarez.boot.autoconfigure.jade4j.JadeHelper;
-import com.doppler.blog.Service.AppSetting;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+//import com.doppler.blog.Service.AppSetting;
 
 /**
  * @author Raysmond<i@raysmond.com>
@@ -19,14 +19,14 @@ public class ViewHelper {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy");
     private static final SimpleDateFormat DATE_FORMAT_MONTH_DAY = new SimpleDateFormat("MMM dd");
 
-    private AppSetting appSetting;
+    //private AppSetting appSetting;
 
     private String applicationEnv;
 
-    @Autowired
-    public ViewHelper(AppSetting appSetting){
-        this.appSetting = appSetting;
-    }
+//    @Autowired
+//    public ViewHelper(AppSetting appSetting){
+//        this.appSetting = appSetting;
+//    }
 
     private long startTime;
 

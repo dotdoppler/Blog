@@ -2,7 +2,6 @@ package com.doppler.blog.models;
 
 import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.util.StringUtils;
@@ -14,10 +13,8 @@ import java.util.Set;
  * Created by doppler on 2016/5/23.
  */
 @Document(collection = "post")
-public class Post  {
+public class Post extends BaseModel {
 
-    @Id
-    private String id;
     private User user;
 
     @Field(value = "title")
@@ -67,14 +64,6 @@ public class Post  {
         this.user = user;
     }
 
-
-//    public PostType getPostType() {
-//        return postType;
-//    }
-//
-//    public void setPostType(PostType postType) {
-//        this.postType = postType;
-//    }
 
     public PostFormat getPostFormat() {
         return postFormat;

@@ -18,6 +18,12 @@ public class RecentPosts {
     @Field(value = "postId")
     private String postId;
 
+    public RecentPosts() {
+    }
+
+    public RecentPosts(String postId){
+        this.postId = postId;
+    }
     public String getId() {
         return id;
     }
