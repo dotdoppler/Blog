@@ -7,7 +7,8 @@ block content
         for post in posts
             div.content
                 h2
-                    a.pure-menu-link(href="/posts/#{post.getLink()}")
-                        = post.getTitle()
+                    a.pure-menu-link(href="/posts/#{post.getLink()}") #{post.getTitle()}
+                        p.post-meta(style="font-size :0.5em;{font-family: serif;")  #{post.getCreatedAt()}
+
     div.footer
         p.legal-copyright &copy; doppler
