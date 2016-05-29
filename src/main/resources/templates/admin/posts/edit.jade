@@ -9,7 +9,7 @@ block content
     hr
     form.post-form(method="post",action="/admin/posts/#{post.getId()}")
       .item-row
-        input.form-control(type="text", name="title", value='#{postForm.getTitle()}')
+        input.form-control(type="text", name="title", value='#{postForm.getTitle()}',,required="required")
       .item-row
         textarea.form-control#content(name="content", style="display:none;")
           = postForm.getContent()
@@ -36,7 +36,7 @@ block content
                   option(value="#{status.getId()}", selected="selected") #{status.getName()}
           .col-sm-3
             span link
-            input.form-control(name="link", value="#{postForm.getLink()}")
+            input.form-control(name="link", value="#{postForm.getLink()}",required="required")
           .col-sm-3
             span Tags
             input.form-control(name="postTags", value="#{postForm.getPostTags()}")

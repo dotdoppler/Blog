@@ -1,32 +1,26 @@
 package com.doppler.blog.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by doppler on 2016/5/19.
  */
 @Document
-public class User {
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
-    @Id
-    private String id;
-    private String name;
+public class User extends BaseModel {
+    private String username;
     private String email;
-    private String role = ROLE_ADMIN;
     @JsonIgnore
     private String password;
+    private String role = "ADMIN";
 
 
-
-
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getId() {

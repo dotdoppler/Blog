@@ -62,12 +62,14 @@ public class PostService {
 
     public void deletePost(String postId){
         postRepository.delete(postId);
+        recentPostsRepository.delete(recentPostsRepository.findByPostId(postId).getId());
     }
     public void updatePost(Post post){
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
         post.setUpdatedAt(DateFomater.format(new Date()));
+        if(recentPostsRepository.findByPostId(post.getId()) == null)
         recentPostsRepository.insert(new RecentPosts(post.getId()));
         mongoOperations.save(post);
     }
