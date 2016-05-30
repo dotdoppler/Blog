@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 public class PasswordEncoderGenerator {
     public static void main(String[] args) {
-        String password = " 63a9f0ea7bb98050796b649e85481845";
+        String password = "";
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         System.out.println(passwordEncoder.encode(password));
     }

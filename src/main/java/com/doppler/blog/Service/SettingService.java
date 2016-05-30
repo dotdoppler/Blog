@@ -1,13 +1,18 @@
 package com.doppler.blog.Service;
 
+import com.doppler.blog.GlobalConstans;
 import com.doppler.blog.models.Setting;
 import com.doppler.blog.repositories.SettingRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 @Service
 public class SettingService {
+    Logger logger = LoggerFactory.getLogger(SettingService.class);
     @Resource
     SettingRepository settingRepository;
 
@@ -16,6 +21,7 @@ public class SettingService {
     }
 
     public  Setting updateSetting(Setting setting) {
-       return settingRepository.insert(setting);
+       logger.info(GlobalConstans.UPDATESETTINGS.value() + new Date().toString());
+        return settingRepository.insert(setting);
     }
 }

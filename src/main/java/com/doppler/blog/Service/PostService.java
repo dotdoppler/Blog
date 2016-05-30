@@ -1,5 +1,6 @@
 package com.doppler.blog.Service;
 
+import com.doppler.blog.GlobalConstans;
 import com.doppler.blog.models.Post;
 import com.doppler.blog.models.RecentPosts;
 import com.doppler.blog.models.support.PostFormat;
@@ -8,9 +9,8 @@ import com.doppler.blog.repositories.PostRepository;
 import com.doppler.blog.repositories.RecentPostsRepository;
 import com.doppler.blog.utils.DateFomater;
 import com.doppler.blog.utils.Markdown;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;
@@ -31,12 +31,16 @@ public class PostService {
     private RecentPostsRepository recentPostsRepository;
     @Resource
     MongoOperations mongoOperations;
+
+    private static final Logger logger = LoggerFactory.getLogger(PostService.class);
+
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
         post.setCreatedAt(DateFomater.format(new Date()));
         post = postRepository.insert(post);
+        logger.info(GlobalConstans.INSERTPOST.value() + post.getTitle());
         recentPostsRepository.insert(new RecentPosts(post.getId()));
         return post;
     }
@@ -44,10 +48,10 @@ public class PostService {
         return postRepository.findAllPostsByStatus(PostStatus.PUBLISHED,new Sort(Sort.Direction.DESC,"_id"));
     }
 
-    public Page<Post> getPublishedPostsByPage(int page, int pageSize){
-        Pageable pageRequest = new PageRequest(page, pageSize, Sort.Direction.DESC, "_id");
-        return postRepository.findAllPostsByStatusAndPage(PostStatus.PUBLISHED, pageRequest);
-    }
+//    public Page<Post> getPublishedPostsByPage(int page, int pageSize){
+//        Pageable pageRequest = new PageRequest(page, pageSize, Sort.Direction.DESC, "_id");
+//        return postRepository.findAllPostsByStatusAndPage(PostStatus.PUBLISHED, pageRequest);
+//    }
 
     public Post getById(String postId){
         return postRepository.findOne(postId);
@@ -62,24 +66,29 @@ public class PostService {
 
     public void deletePost(String postId){
         postRepository.delete(postId);
-        recentPostsRepository.delete(recentPostsRepository.findByPostId(postId).getId());
+        logger.info(GlobalConstans.DELETEPOST.value() + postId);
     }
     public void updatePost(Post post){
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
-            post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
+            post.setRenderedContent(Markdown.markdownToHtml(post.getTitle()));
         }
         post.setUpdatedAt(DateFomater.format(new Date()));
         if(recentPostsRepository.findByPostId(post.getId()) == null)
         recentPostsRepository.insert(new RecentPosts(post.getId()));
         mongoOperations.save(post);
+        logger.info(GlobalConstans.UPDATEPOST.value() + post.getTitle());
     }
     public List<Post> getRecentPosts(){
         List<Post> recentPosts = null;
         List<RecentPosts> list = recentPostsRepository.findAll();
         if (list.size() > 0){
             recentPosts = new ArrayList<Post>();
-            for(int i = list.size() - 1;i > -1;i--)
-                recentPosts.add(postRepository.findOne(list.get(i).getPostId()));
+            Post post = null;
+            for(int i = list.size() - 1;i > -1;i--) {
+                post = postRepository.findOne(list.get(i).getPostId());
+                if (post != null)
+                recentPosts.add(post);
+            }
         }
         return recentPosts;
     }

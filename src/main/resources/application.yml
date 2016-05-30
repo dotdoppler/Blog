@@ -11,7 +11,10 @@ spring:
         enabled: true
   jade4j:
       caching: false
-security:
-  basic:
-    authorize-mode: NONE
 
+
+
+server:
+  error:
+    whitelabel:
+      enabled: false
