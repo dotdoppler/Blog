@@ -1,6 +1,6 @@
 package com.doppler.blog.Service;
 
-import com.doppler.blog.GlobalConstans;
+import com.doppler.blog.GlobalConstants;
 import com.doppler.blog.exception.NotFoundException;
 import com.doppler.blog.models.User;
 import com.doppler.blog.repositories.UserRepository;
@@ -58,7 +58,7 @@ public class UserService implements UserDetailsService {
         if (passwordEncoder().matches(password,user.getPassword())) {
             user.setPassword(passwordEncoder().encode(newPassword));
             userRepository.save(user);
-            logger.info(GlobalConstans.UPDATEPWD.value() + new Date().toString());
+            logger.info(GlobalConstants.UPDATEPWD.value() + new Date().toString());
         }
 
     }

@@ -1,6 +1,6 @@
 package com.doppler.blog.Service;
 
-import com.doppler.blog.GlobalConstans;
+import com.doppler.blog.GlobalConstants;
 import com.doppler.blog.models.Setting;
 import com.doppler.blog.repositories.SettingRepository;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class SettingService {
     }
 
     public  Setting updateSetting(Setting setting) {
-       logger.info(GlobalConstans.UPDATESETTINGS.value() + new Date().toString());
+       logger.info(GlobalConstants.UPDATESETTINGS.value() + new Date().toString());
         return settingRepository.insert(setting);
     }
 }

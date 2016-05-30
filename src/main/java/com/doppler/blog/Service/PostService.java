@@ -1,6 +1,7 @@
 package com.doppler.blog.Service;
 
-import com.doppler.blog.GlobalConstans;
+import com.doppler.blog.GlobalConstants;
+import com.doppler.blog.models.Hashtag;
 import com.doppler.blog.models.Post;
 import com.doppler.blog.models.RecentPosts;
 import com.doppler.blog.models.support.PostFormat;
@@ -16,9 +17,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by doppler on 2016/5/23.
@@ -31,6 +30,8 @@ public class PostService {
     private RecentPostsRepository recentPostsRepository;
     @Resource
     MongoOperations mongoOperations;
+    @Resource
+    HashtagService hashtagService;
 
     private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
@@ -40,7 +41,7 @@ public class PostService {
         }
         post.setCreatedAt(DateFomater.format(new Date()));
         post = postRepository.insert(post);
-        logger.info(GlobalConstans.INSERTPOST.value() + post.getTitle());
+        logger.info(GlobalConstants.INSERTPOST.value() + post.getTitle());
         recentPostsRepository.insert(new RecentPosts(post.getId()));
         return post;
     }
@@ -66,7 +67,7 @@ public class PostService {
 
     public void deletePost(String postId){
         postRepository.delete(postId);
-        logger.info(GlobalConstans.DELETEPOST.value() + postId);
+        logger.info(GlobalConstants.DELETEPOST.value() + postId);
     }
     public void updatePost(Post post){
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
@@ -76,7 +77,7 @@ public class PostService {
         if(recentPostsRepository.findByPostId(post.getId()) == null)
         recentPostsRepository.insert(new RecentPosts(post.getId()));
         mongoOperations.save(post);
-        logger.info(GlobalConstans.UPDATEPOST.value() + post.getTitle());
+        logger.info(GlobalConstants.UPDATEPOST.value() + post.getTitle());
     }
     public List<Post> getRecentPosts(){
         List<Post> recentPosts = null;
@@ -93,4 +94,22 @@ public class PostService {
         return recentPosts;
     }
 
+    public Set<Hashtag> parseHashtagStr(String hashtags_str){
+        Set<Hashtag> hashtags = new HashSet<Hashtag>();
+        if(hashtags_str != null && !hashtags_str.isEmpty()){
+            String names[] = hashtags_str.split("\\s*,\\s*");
+            for(String name : names)
+                hashtags.add(hashtagService.findOrCreateByName(name));
+        }
+        return hashtags;
+    }
+
+    public String getHashtags_str(Set<Hashtag> hashtags) {
+        if (hashtags == null || hashtags.isEmpty())
+            return "";
+        StringBuilder hashtags_str = new StringBuilder("");
+        hashtags.forEach(hashtag -> hashtags_str.append(hashtag.getName()).append(","));
+        hashtags_str.deleteCharAt(hashtags_str.length() - 1);
+        return hashtags_str.toString();
+    }
 }

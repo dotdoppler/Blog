@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.util.StringUtils;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -34,7 +33,7 @@ public class Post extends BaseModel {
     //private PostType postType = PostType.POST;
 
 
-    private Set<Tag> tags = new HashSet<Tag>();
+    private Set<Hashtag> hashtags;
 
     public String getId() {
         return id;
@@ -101,12 +100,12 @@ public class Post extends BaseModel {
         this.title = title;
     }
 
-    public Set<Tag> getTags() {
-        return tags;
+    public Set<Hashtag> getHashtags() {
+        return hashtags;
     }
 
-    public void setTags(Set<Tag> tags) {
-        this.tags = tags;
+    public void setHashtags(Set<Hashtag> hashtags) {
+        this.hashtags = hashtags;
     }
 
     public String getLink() {

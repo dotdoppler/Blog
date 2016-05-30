@@ -38,7 +38,7 @@ public class PostController {
     public String create(@Valid PostForm postForm,Model model){
         Post post = DTOUtil.map(postForm, Post.class);
         post.setUser(new User());
-       // post.setTags(postService.parseTagNames(postForm.getPostTags()));
+        post.setHashtags(postService.parseHashtagStr(postForm.getHashtags()));
 
         postService.createPost(post);
 
@@ -61,7 +61,7 @@ public class PostController {
     @RequestMapping(value = "new",method = RequestMethod.GET)
     public String newPost(Model model){
         PostForm postForm = DTOUtil.map(new Post(), PostForm.class);
-        postForm.setPostTags("");
+        postForm.setHashtags("");
 
         model.addAttribute("postForm", postForm);
         model.addAttribute("postFormats", PostFormat.values());
@@ -73,7 +73,7 @@ public class PostController {
     public String editPost(@PathVariable String postId, Model model){
         Post post = postService.getById(postId);
         PostForm postForm = DTOUtil.map(post, PostForm.class);
-
+        postForm.setHashtags(postService.getHashtags_str(post.getHashtags()));
         model.addAttribute("post", post);
         model.addAttribute("postForm", postForm);
         model.addAttribute("postFormats", PostFormat.values());

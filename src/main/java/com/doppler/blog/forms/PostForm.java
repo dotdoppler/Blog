@@ -3,7 +3,9 @@ package com.doppler.blog.forms;
 import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import lombok.Data;
-
+/*
+    every hashtag starts a with "#"
+ */
 
 @Data
 public class PostForm {
@@ -18,7 +20,7 @@ public class PostForm {
 
     private String link;
 
-    private String postTags;
+    private String hashtags;
 
     public String getTitle() {
         return title;
@@ -60,11 +62,11 @@ public class PostForm {
         this.link = link;
     }
 
-    public String getPostTags() {
-        return postTags;
+    public String getHashtags() {
+        return hashtags;
     }
 
-    public void setPostTags(String postTags) {
-        this.postTags = postTags;
+    public void setHashtags(String hashtags) {
+        this.hashtags = hashtags;
     }
 }
