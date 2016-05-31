@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Collections;
-import java.util.Date;
 
 /**
  * Created by doppler on 2016/5/21.
@@ -58,7 +57,7 @@ public class UserService implements UserDetailsService {
         if (passwordEncoder().matches(password,user.getPassword())) {
             user.setPassword(passwordEncoder().encode(newPassword));
             userRepository.save(user);
-            logger.info(GlobalConstants.UPDATEPWD.value() + new Date().toString());
+            logger.info(GlobalConstants.UPDATEPWD.value());
         }
 
     }

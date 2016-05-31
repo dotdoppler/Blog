@@ -8,7 +8,7 @@ import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.repositories.PostRepository;
 import com.doppler.blog.repositories.RecentPostsRepository;
-import com.doppler.blog.utils.DateFomater;
+import com.doppler.blog.utils.DateFormatter;
 import com.doppler.blog.utils.Markdown;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +39,7 @@ public class PostService {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
         }
-        post.setCreatedAt(DateFomater.format(new Date()));
+        post.setCreatedAt(DateFormatter.format(new Date()));
         post = postRepository.insert(post);
         logger.info(GlobalConstants.INSERTPOST.value() + post.getTitle());
         recentPostsRepository.insert(new RecentPosts(post.getId()));
@@ -70,10 +70,10 @@ public class PostService {
         logger.info(GlobalConstants.DELETEPOST.value() + postId);
     }
     public void updatePost(Post post){
-        if (post.getPostFormat() == PostFormat.MARKDOWN) {
-            post.setRenderedContent(Markdown.markdownToHtml(post.getTitle()));
-        }
-        post.setUpdatedAt(DateFomater.format(new Date()));
+        if (post.getPostFormat() == PostFormat.MARKDOWN)
+            post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
+        post.setUpdatedAt(DateFormatter.format(new Date()));
+
         if(recentPostsRepository.findByPostId(post.getId()) == null)
         recentPostsRepository.insert(new RecentPosts(post.getId()));
         mongoOperations.save(post);

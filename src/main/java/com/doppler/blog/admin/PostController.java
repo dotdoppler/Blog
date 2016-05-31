@@ -53,8 +53,8 @@ public class PostController {
     public  String updatePost(@PathVariable String postId,@Valid PostForm postForm){
         Post post = postService.getById(postId);
         DTOUtil.mapTo(postForm, post);
+        post.setHashtags(postService.parseHashtagStr(postForm.getHashtags()));
         postService.updatePost(post);
-        //return "redirect:/posts/" + postId;
         return  "redirect:/admin/posts";
     }
 

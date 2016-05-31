@@ -13,7 +13,7 @@ block content
         h1.content-subhead RECENT POSTS
             for post in recentPosts
                 h2
-                    a.pure-menu-link(href="/posts/#{post.getLink()}")
+                    a.pure-menu-link(href="/posts/#{post.getLink()}",style="padding-left: initial;")
                         = post.getTitle()
         div(style="text-align:center;")
             a.btn-flat.pure-button.button-small(href="/posts/archive") More

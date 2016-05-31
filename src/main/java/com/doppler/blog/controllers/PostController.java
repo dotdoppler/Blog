@@ -32,6 +32,7 @@ public class PostController {
         Post post = postService.getByLink(postLink);
         if (post == null)
             throw new  NotFoundException("");
+        model.addAttribute("hashtags",post.getHashtags());
         model.addAttribute("post",post);
         return "posts/post";
     }

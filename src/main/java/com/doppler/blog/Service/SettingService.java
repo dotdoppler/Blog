@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
 
 @Service
 public class SettingService {
@@ -21,7 +20,7 @@ public class SettingService {
     }
 
     public  Setting updateSetting(Setting setting) {
-       logger.info(GlobalConstants.UPDATESETTINGS.value() + new Date().toString());
+       logger.info(GlobalConstants.UPDATESETTINGS.value());
         return settingRepository.insert(setting);
     }
 }

@@ -4,7 +4,11 @@ block content
         br
         .posts
             section.post
-                h2.post-title.text-center #{post.getTitle()}
-                p.post-meta  #{post.getCreatedAt()}
+                h1.post-title.text-center #{post.getTitle()}
+                if (post.getCreatedAt() != null)
+                    p.post-meta(style="margin-left:0;")  #{post.getCreatedAt()}&nbsp;
+                        if(hashtags != null)
+                            for hashtag in hashtags
+                                a.post-category(href="#") #&nbsp;#{hashtag.getName()}
             div.post-description
                 p !{post.getRenderedContent()}
