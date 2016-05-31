@@ -2,16 +2,21 @@ package com.doppler.blog.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * Created by doppler on 2016/5/19.
  */
 @Document
 public class User extends BaseModel {
+    @Field(value = "username")
     private String username;
+    @Field(value = "email")
     private String email;
     @JsonIgnore
+    @Field(value = "password")
     private String password;
+    @Field(value = "role")
     private String role = "ADMIN";
 
 

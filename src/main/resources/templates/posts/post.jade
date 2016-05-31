@@ -9,6 +9,6 @@ block content
                     p.post-meta(style="margin-left:0;")  #{post.getCreatedAt()}&nbsp;
                         if(hashtags != null)
                             for hashtag in hashtags
-                                a.post-category(href="#") #&nbsp;#{hashtag.getName()}
+                                a.post-category(href="/hashtag/#{hashtag}") #&nbsp;#{hashtag}
             div.post-description
                 p !{post.getRenderedContent()}

@@ -1,0 +1,40 @@
+package com.doppler.blog.controllers;
+
+import com.doppler.blog.Service.HashtagService;
+import com.doppler.blog.exception.NotFoundException;
+import com.doppler.blog.models.Hashtag;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * Created by doppler on 2016/5/31.
+ */
+@Controller
+@RequestMapping("hashtag")
+public class TagController {
+    @Resource
+    HashtagService hashtagService;
+
+    @RequestMapping(value = "all",method = RequestMethod.GET)
+    public String AllTag(Model model){
+        List<Hashtag> hashtags = hashtagService.findAll();
+        model.addAttribute("allHashtags",hashtags);
+        return "hashtags/index";
+    }
+    @RequestMapping(value = "{tagName}",method = RequestMethod.GET)
+        public String showPosts(@PathVariable String tagName,Model model){
+        Hashtag hashtag = hashtagService.findByName(tagName);
+        if (hashtag == null || hashtag.getName().isEmpty())
+            throw new  NotFoundException();
+        model.addAttribute("hashtag",hashtag.getName());
+        return "hashtags/postsList";
+    }
+}
+
+

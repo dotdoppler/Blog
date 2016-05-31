@@ -71,6 +71,17 @@
     letter-spacing: 0.025em;
     font-family: Microsoft Yahei;
 }
+.post ul.tags{
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.post ul.tags li{
+    display: inline-block;
+    list-style: none;
+    margin-left: 10px;
+    font-size: 1.7em
+}
 @media screen and (min-width: 35.5em) {
     .u-sm-1,
     .u-sm-1-1,
@@ -1049,6 +1060,8 @@ a.pure-button-primary {
     }
     .header h2 {
         font-size: 128%;
+        font-size: 100%;
+        padding-top: inherit;
     }
 
     .content p {

@@ -1,7 +1,6 @@
 package com.doppler.blog.Service;
 
 import com.doppler.blog.GlobalConstants;
-import com.doppler.blog.models.Hashtag;
 import com.doppler.blog.models.Post;
 import com.doppler.blog.models.RecentPosts;
 import com.doppler.blog.models.support.PostFormat;
@@ -94,21 +93,21 @@ public class PostService {
         return recentPosts;
     }
 
-    public Set<Hashtag> parseHashtagStr(String hashtags_str){
-        Set<Hashtag> hashtags = new HashSet<Hashtag>();
+    public Set<String> parseHashtagStr(String hashtags_str){
+        Set<String> hashtags = new HashSet<String>();
         if(hashtags_str != null && !hashtags_str.isEmpty()){
             String names[] = hashtags_str.split("\\s*,\\s*");
             for(String name : names)
-                hashtags.add(hashtagService.findOrCreateByName(name));
+                hashtags.add(hashtagService.findOrCreateByName(name).getName());
         }
         return hashtags;
     }
 
-    public String getHashtags_str(Set<Hashtag> hashtags) {
+    public String getHashtags_str(Set<String> hashtags) {
         if (hashtags == null || hashtags.isEmpty())
             return "";
         StringBuilder hashtags_str = new StringBuilder("");
-        hashtags.forEach(hashtag -> hashtags_str.append(hashtag.getName()).append(","));
+        hashtags.forEach(hashtag -> hashtags_str.append(hashtag).append(","));
         hashtags_str.deleteCharAt(hashtags_str.length() - 1);
         return hashtags_str.toString();
     }

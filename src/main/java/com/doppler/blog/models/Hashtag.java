@@ -1,6 +1,5 @@
 package com.doppler.blog.models;
 
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -11,9 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Hashtag extends BaseModel {
 
-    @Indexed(name = "name",unique = true,sparse = true)
     @Field(value = "name")
-    private String name;
+    private  String  name;
 
     public Hashtag(){};
     public Hashtag(String name) {
@@ -24,7 +22,4 @@ public class Hashtag extends BaseModel {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 }

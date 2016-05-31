@@ -8,7 +8,8 @@ public enum GlobalConstants {
     DELETEPOST("Delete a post : "),
     UPDATEPOST("Update a post : "),
     UPDATEPWD("User updated password"),
-    UPDATESETTINGS("App info updated");
+    UPDATESETTINGS("App info updated"),
+    INSERTHASHTAG("Insert a hashtag : ");
 
     private final String value;
     private GlobalConstants(String value){

@@ -19,6 +19,7 @@ public class Post extends BaseModel {
     @Field(value = "title")
     private String title;
 
+    @Field(value = "content")
     private String content;
 
     @Field(value = "link")
@@ -32,16 +33,9 @@ public class Post extends BaseModel {
 
     //private PostType postType = PostType.POST;
 
+    @Field(value = "hashtags")
+    private Set<String> hashtags;
 
-    private Set<Hashtag> hashtags;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getRenderedContent() {
         if (this.postFormat == PostFormat.MARKDOWN)
@@ -100,11 +94,11 @@ public class Post extends BaseModel {
         this.title = title;
     }
 
-    public Set<Hashtag> getHashtags() {
+    public Set<String> getHashtags() {
         return hashtags;
     }
 
-    public void setHashtags(Set<Hashtag> hashtags) {
+    public void setHashtags(Set<String> hashtags) {
         this.hashtags = hashtags;
     }
 
