@@ -1,8 +1,8 @@
 /**
  * Created by doppler on 2016/5/19.
  */
-function deletePost(postId){
-    if(confirm("Are you sure to delete post " + postId + "?")) {
+function deletePost(postId,title){
+    if(confirm("Are you sure to delete   " + title + "?")) {
         $.ajax({
             type : "delete",
             url  : "/admin/posts/" + postId,
@@ -12,6 +12,18 @@ function deletePost(postId){
         });
     }
 }
+function deleteTag(hashtagId,tagName){
+    if(confirm("Are you sure to delete tag : " + tagName + "?")) {
+        $.ajax({
+            type : "delete",
+            url  : "/admin/hashtags/" + hashtagId,
+            success : function(){
+                window.location.href="/admin/hashtags";
+            }
+        });
+    }
+}
+
 //function updatePost(postId){
 //    alert(postId);
 //    var title = $("#title").val();

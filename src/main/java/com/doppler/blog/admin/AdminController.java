@@ -1,11 +1,14 @@
 package com.doppler.blog.admin;
 
+import com.doppler.blog.Service.HashtagService;
 import com.doppler.blog.Service.SettingService;
 import com.doppler.blog.models.Setting;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -19,6 +22,8 @@ public class AdminController {
 
     @Resource
     SettingService settingService;
+    @Resource
+    HashtagService hashtagService;
 
     @RequestMapping("")
     public String index(){
@@ -35,5 +40,16 @@ public class AdminController {
        setting = settingService.updateSetting(setting);
         model.addAttribute("settings",setting);
         return "admin/home/settings";
+    }
+    @RequestMapping(value = "hashtags",method = RequestMethod.GET)
+    public String showTags(Model model){
+        model.addAttribute("hashtags",hashtagService.findAll());
+        return "admin/hashtags/index";
+    }
+
+    @RequestMapping(value = "hashtags/{hashtagId}",method = RequestMethod.DELETE)
+    public @ResponseBody String deleteHashtag(@PathVariable String hashtagId){
+        hashtagService.deleteTag(hashtagId);
+        return null;
     }
 }

@@ -33,7 +33,7 @@ block content
                     i.fa.fa-eye
                   a.btn.btn-xs.btn-primary.btn-flat(href="/admin/posts/#{post.getId()}/edit")
                     i.fa.fa-edit
-                  a.btn.btn-xs.btn-danger.btn-delete.btn-flat(href="javascript:;", onclick="deletePost('#{post.getId()}')")
+                  a.btn.btn-xs.btn-danger.btn-delete.btn-flat(href="javascript:;", onclick="deletePost('#{post.getId()}','#{post.getTitle()}')")
                     i.fa.fa-trash-o
 
 

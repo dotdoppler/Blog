@@ -37,4 +37,7 @@ public class HashtagService {
         return hashtagRepository.findAll();
     }
 
+    public void deleteTag(String hashtagId) {
+        hashtagRepository.delete(hashtagId);
+    }
 }
