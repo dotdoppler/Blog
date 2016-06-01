@@ -111,4 +111,8 @@ public class PostService {
         hashtags_str.deleteCharAt(hashtags_str.length() - 1);
         return hashtags_str.toString();
     }
+
+    public List<Post> getPostsByTag(String tagName) {
+        return postRepository.getByHashtag(tagName,new Sort(Sort.Direction.DESC,"_id"));
+    }
 }

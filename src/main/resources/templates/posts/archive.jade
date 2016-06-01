@@ -3,14 +3,6 @@ block content
     .content
         div.header
             h1 Posts
-        for post in posts
-            div.content
-                h2
-                    li
-                        a.pure-menu-link(href="/posts/#{post.getLink()}") #{post.getTitle()}
-                            p.post-meta(style="font-size :0.5em;{font-family: serif;")
-                                =post.getCreatedAt()
-
-
+        include ../public/postList
     div.footer
         p.legal-copyright &copy; doppler
