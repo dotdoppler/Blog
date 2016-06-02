@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
-
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 /**
@@ -30,7 +28,6 @@ public class TestController {
     public @ResponseBody String cc(){
         CC capped = new CC();
         capped.setName(88);
-        capped.setNote(Integer.toString(new Date().getSeconds()));
         ccRepository.insert(capped);
         return "ok";
     }

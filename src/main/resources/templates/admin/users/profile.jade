@@ -5,7 +5,6 @@ block content
     hr
     .profile
         form.post-form(method="post", action="/admin/user/#{user.getUsername()}")
-            input(type="hidden", name='_csrf', value='#{_csrf.token}')
             .row
                 .col-sm-2 ID
                 .col-sm-3 #{user.getId()}

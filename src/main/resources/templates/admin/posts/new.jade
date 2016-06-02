@@ -10,8 +10,6 @@ block content
       hr
       form.post-form(method="post",action="/admin/posts")
         .item-row
-          input(type="hidden", name='_csrf', value='#{_csrf.token}')
-        .item-row
           input.form-control(type="text", name="title", value='#{postForm.getTitle()}',,required="required")
         .item-row
           textarea.form-control#content(name="content", style="display:none;")
