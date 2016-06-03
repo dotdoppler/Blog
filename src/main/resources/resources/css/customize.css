@@ -730,7 +730,10 @@ code {
     border-top: 1px solid #eee;
     margin-top: 3.4286em;
     padding: 1.1429em;
+
+    /*
     background: rgb(250, 250, 250);
+    */
 }
 
 
@@ -1033,6 +1036,7 @@ a.pure-button-primary {
     .legal-links li {
         text-align: right;
         margin: 0;
+        text-align: center;
     }
 
 }

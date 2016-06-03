@@ -9,6 +9,8 @@ import java.io.Serializable;
  * Created by doppler on 2016/5/28.
  */
 public abstract class BaseModel implements Serializable {
+
+
     @Id
     protected String id;
     @Field(value = "createdAt")

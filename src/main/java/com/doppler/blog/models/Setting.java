@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 @Document(collection = "setting")
 public class Setting extends BaseModel {
 
+    private static final long serialVersionUID = 9127040950888014691L;
     @NotNull
     @Field(value = "siteName")
     private String siteName;

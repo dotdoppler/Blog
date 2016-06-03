@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
  */
 @Document
 public class User extends BaseModel {
+
+    private static final long serialVersionUID = -9127607570454530499L;
     @Field(value = "username")
     private String username;
     @Field(value = "email")

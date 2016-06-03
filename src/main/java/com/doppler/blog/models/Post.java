@@ -14,6 +14,8 @@ import java.util.Set;
 @Document(collection = "post")
 public class Post extends BaseModel {
 
+
+    private static final long serialVersionUID = -8032144622123598690L;
     private User user;
 
     @Field(value = "title")

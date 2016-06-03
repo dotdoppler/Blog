@@ -28,4 +28,8 @@ public class HomeController {
         model.addAttribute("settings", settingService.getSetting());
         return "home/index";
     }
+    @RequestMapping(value = "about")
+    public String about(){
+        return "home/about";
+    }
 }

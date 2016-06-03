@@ -10,10 +10,7 @@ spring:
       repositories:
         enabled: true
   jade4j:
-      caching: false
-
-
-
+      caching: true
 server:
   error:
     whitelabel:

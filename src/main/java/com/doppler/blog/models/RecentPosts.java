@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.io.Serializable;
+
 /**
  * Created by doppler on 2016/5/26.
  * capped collection "recent_posts" with 3 documents at most
@@ -12,7 +14,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
  *
  */
 @Document(collection = "recent_posts")
-public class RecentPosts {
+public class RecentPosts implements Serializable {
+
+    private static final long serialVersionUID = -8339474637436161272L;
     @Id
     private String id;
     @Field(value = "postId")

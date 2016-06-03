@@ -9,7 +9,8 @@ block content
             img.pure-img-responsive(src="/images/cover.jpg")
         br
         h1.content-subhead Notification
-            h2.pure-menu-link #{settings.getNotification()}
+            h2.pure-menu-link(style="padding-left: initial;")
+                #{settings.getNotification()}
         h1.content-subhead RECENT POSTS
             for post in recentPosts
                 h2
@@ -17,8 +18,6 @@ block content
                         = post.getTitle()
         div(style="text-align:center;")
             a.btn-flat.pure-button.button-small(href="/posts/archive") More
-    div.footer
-        p.legal-copyright &copy; doppler
 
 
 
