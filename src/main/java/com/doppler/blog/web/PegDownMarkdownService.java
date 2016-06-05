@@ -23,7 +23,8 @@ public class PegDownMarkdownService implements MarkdownService {
         synchronized (pegdown) {
             RootNode astRoot = pegdown.parseMarkdown(markdownSource.toCharArray());
             ToHtmlSerializer serializer = new ToHtmlSerializer(new LinkRenderer(),
-                    Collections.<String, VerbatimSerializer>singletonMap(VerbatimSerializer.DEFAULT, PygmentsVerbatimSerializer.INSTANCE));
+                    Collections.singletonMap(VerbatimSerializer.DEFAULT, PygmentsVerbatimSerializer.INSTANCE));
+//            ToHtmlSerializer serializer = new ToHtmlSerializer(new LinkRenderer());
             return serializer.toHtml(astRoot);
         }
     }

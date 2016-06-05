@@ -6,8 +6,6 @@ import com.doppler.blog.web.PegDownMarkdownService;
 
 /**
  * A Markdown processing util class
- *
- * @author Raysmond<i@raysmond.com>.
  */
 public class Markdown {
 
