@@ -692,7 +692,8 @@ code {
 
 code {
     padding: 0.2em 0.4em;
-    white-space: nowrap;
+    font-family: "Times New Roman";
+
 }
 .content p code {
     font-size: 90%;
