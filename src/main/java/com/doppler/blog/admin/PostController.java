@@ -3,7 +3,6 @@ package com.doppler.blog.admin;
 import com.doppler.blog.Service.PostService;
 import com.doppler.blog.forms.PostForm;
 import com.doppler.blog.models.Post;
-import com.doppler.blog.models.User;
 import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.utils.DTOUtil;
@@ -30,18 +29,14 @@ public class PostController {
     public String index(Model model){
         List<Post> posts = postService.findAllPosts();
         model.addAttribute("posts",posts);
-
         return "admin/posts/index";
     }
 
     @RequestMapping(value = "",method = RequestMethod.POST)
     public String create(@Valid PostForm postForm,Model model){
         Post post = DTOUtil.map(postForm, Post.class);
-        post.setUser(new User());
         post.setHashtags(postService.parseHashtagStr(postForm.getHashtags()));
-
         postService.createPost(post);
-
         return "redirect:/admin/posts";
     }
     @RequestMapping(value = "{postId}",method = RequestMethod.DELETE)
@@ -62,7 +57,6 @@ public class PostController {
     public String newPost(Model model){
         PostForm postForm = DTOUtil.map(new Post(), PostForm.class);
         postForm.setHashtags("");
-
         model.addAttribute("postForm", postForm);
         model.addAttribute("postFormats", PostFormat.values());
         model.addAttribute("postStatus", PostStatus.values());
@@ -78,7 +72,6 @@ public class PostController {
         model.addAttribute("postForm", postForm);
         model.addAttribute("postFormats", PostFormat.values());
         model.addAttribute("postStatus", PostStatus.values());
-
         return "admin/posts/edit";
     }
 }

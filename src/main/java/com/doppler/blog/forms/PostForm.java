@@ -3,10 +3,6 @@ package com.doppler.blog.forms;
 import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import lombok.Data;
-/*
-    every hashtag starts a with "#"
- */
-
 @Data
 public class PostForm {
 

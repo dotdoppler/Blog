@@ -16,13 +16,15 @@ import java.util.List;
  */
 @Service
 public class HashtagService {
+
     @Resource
     HashtagRepository hashtagRepository;
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(HashtagService.class);
+
     public Hashtag findOrCreateByName(String name){
         Hashtag hashtag = hashtagRepository.findByName(name);
-        if(hashtag == null) {
+        if(hashtag == null || hashtag.getName().isEmpty()) {
             hashtag = new Hashtag(name);
             hashtag.setCreatedAt(DateFormatter.format(new Date()));
             hashtagRepository.insert(hashtag);
@@ -33,6 +35,7 @@ public class HashtagService {
     public Hashtag findByName(String tagName){
         return hashtagRepository.findByName(tagName);
     }
+
     public List<Hashtag> findAll(){
         return hashtagRepository.findAll();
     }

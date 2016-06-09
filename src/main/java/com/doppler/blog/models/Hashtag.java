@@ -14,8 +14,6 @@ public class Hashtag extends BaseModel {
     private static final long serialVersionUID = 704937242013239319L;
     @Field(value = "name")
     private  String  name;
-
-    public Hashtag(){};
     public Hashtag(String name) {
         this.name = name;
     }

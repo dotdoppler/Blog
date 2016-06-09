@@ -16,7 +16,6 @@ public class Post extends BaseModel {
 
 
     private static final long serialVersionUID = -8032144622123598690L;
-    private User user;
 
     @Field(value = "title")
     private String title;
@@ -33,7 +32,6 @@ public class Post extends BaseModel {
 
     private PostFormat postFormat = PostFormat.MARKDOWN;
 
-    //private PostType postType = PostType.POST;
 
     @Field(value = "hashtags")
     private Set<String> hashtags;
@@ -50,15 +48,6 @@ public class Post extends BaseModel {
     public String toString() {
         return this.title;
     }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
 
     public PostFormat getPostFormat() {
         return postFormat;

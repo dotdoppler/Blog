@@ -83,7 +83,7 @@ public class PostService {
         List<RecentPosts> list = recentPostsRepository.findAll();
         if (list.size() > 0){
             recentPosts = new ArrayList<Post>();
-            Post post = null;
+            Post post;
             for(int i = list.size() - 1;i > -1;i--) {
                 post = postRepository.findOne(list.get(i).getPostId());
                 if (post != null)
