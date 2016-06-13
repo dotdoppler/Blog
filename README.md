@@ -38,7 +38,7 @@ Blog 使用了下列的框架和开源项目
 
 -----
              
-Blog is a very simple blog system that develops by java ,I have put it on my [website](#)。
+Blog is a very simple blog system that developed by java ,I have put it on my [website](#)。
 
 Blog is powered by following frameworks:
 
