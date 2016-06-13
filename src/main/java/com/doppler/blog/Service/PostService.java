@@ -44,7 +44,9 @@ public class PostService {
         recentPostsRepository.insert(new RecentPosts(post.getId()));
         return post;
     }
+    //@Cacheable(value = "archiveCache")
     public List<Post> getPublishedPosts(){
+        logger.info("not cache,get form db");
         return postRepository.findAllPostsByStatus(PostStatus.PUBLISHED,new Sort(Sort.Direction.DESC,"_id"));
     }
 

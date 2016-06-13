@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan("com.doppler.blog")
 @EnableAutoConfiguration
+//@EnableCaching
 public class Application extends WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter{
 
     public static void main(String[] args) {

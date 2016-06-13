@@ -653,7 +653,7 @@ aside a, aside a:visited {
     margin-right: auto;
     padding-left: 1em;
     padding-right: 1em;
-    max-width: 768px;
+    max-width: 800px;
 }
 
 .content .content-subhead {
@@ -687,13 +687,13 @@ pre,
 code {
     font-family: Consolas, Courier, monospace;
     color: #333;
-    background: rgb(250, 250, 250);
+    background: rgb(245, 245, 245);
+    padding-left: 0.8em;
+    letter-spacing: 0.01em;
 }
 
 code {
-    padding: 0.2em 0.4em;
-    font-family: "Times New Roman";
-
+font-size: 0.85em;
 }
 .content p code {
     font-size: 90%;
