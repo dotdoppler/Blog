@@ -11,6 +11,8 @@ import com.doppler.blog.utils.DateFormatter;
 import com.doppler.blog.utils.Markdown;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,7 @@ public class PostService {
 
     private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
+    @CacheEvict(value = "post_archive_Cache", allEntries = true)
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
@@ -44,9 +47,10 @@ public class PostService {
         recentPostsRepository.insert(new RecentPosts(post.getId()));
         return post;
     }
-    //@Cacheable(value = "archiveCache")
+
+    @Cacheable(value = "post_archive_Cache")
     public List<Post> getPublishedPosts(){
-        logger.info("not cache,get form db");
+        logger.info("not cache,get post archive form db");
         return postRepository.findAllPostsByStatus(PostStatus.PUBLISHED,new Sort(Sort.Direction.DESC,"_id"));
     }
 
@@ -58,6 +62,7 @@ public class PostService {
     public Post getById(String postId){
         return postRepository.findOne(postId);
     }
+
     public Post getByLink(String postLink){
         return postRepository.getByLink(postLink);
     }
@@ -66,10 +71,12 @@ public class PostService {
         return postRepository.findAll(new Sort(Sort.Direction.DESC,"_id"));
     }
 
+    @CacheEvict(value = "post_archive_Cache", allEntries = true)
     public void deletePost(String postId){
         postRepository.delete(postId);
         logger.info(GlobalConstants.DELETEPOST.value() + postId);
     }
+    @CacheEvict(value = "post_archive_Cache", allEntries = true)
     public void updatePost(Post post){
         if (post.getPostFormat() == PostFormat.MARKDOWN)
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));

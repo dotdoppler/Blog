@@ -1,4 +1,4 @@
-extends /templates/layout/app
+extends ../layout/app
 block content
     div.content
         br
@@ -11,4 +11,4 @@ block content
                             for hashtag in hashtags
                                 a.post-category(href="/hashtag/#{hashtag}") #&nbsp;#{hashtag}
             div.post-description
-                p !{post.getRenderedContent()}
+                !{post.getRenderedContent()}
