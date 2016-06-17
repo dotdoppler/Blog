@@ -34,9 +34,10 @@ public class PostService {
     @Resource
     HashtagService hashtagService;
 
+    private static final String CACHE_POST_ARCHIVE = "post_archive";
     private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
-    @CacheEvict(value = "post_archive_Cache", allEntries = true)
+    @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
     public Post createPost(Post post) {
         if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
@@ -48,7 +49,7 @@ public class PostService {
         return post;
     }
 
-    @Cacheable(value = "post_archive_Cache")
+    @Cacheable(value = CACHE_POST_ARCHIVE)
     public List<Post> getPublishedPosts(){
         logger.info("not cache,get post archive form db");
         return postRepository.findAllPostsByStatus(PostStatus.PUBLISHED,new Sort(Sort.Direction.DESC,"_id"));
@@ -71,12 +72,12 @@ public class PostService {
         return postRepository.findAll(new Sort(Sort.Direction.DESC,"_id"));
     }
 
-    @CacheEvict(value = "post_archive_Cache", allEntries = true)
+    @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
     public void deletePost(String postId){
         postRepository.delete(postId);
         logger.info(GlobalConstants.DELETEPOST.value() + postId);
     }
-    @CacheEvict(value = "post_archive_Cache", allEntries = true)
+    @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
     public void updatePost(Post post){
         if (post.getPostFormat() == PostFormat.MARKDOWN)
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));

@@ -1,6 +1,11 @@
 extends ../layout/app
+block head
+    script(src="/js/jquery.goup.min.js")
 block content
     .content
         div.header
             h1 Posts
         include ../public/postList
+        script
+            jQuery(document).ready(function(){
+                jQuery.goup();});

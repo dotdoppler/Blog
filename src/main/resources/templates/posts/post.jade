@@ -1,4 +1,6 @@
 extends ../layout/app
+block head
+    script(src="/js/jquery.goup.min.js")
 block content
     div.content
         br
@@ -12,3 +14,6 @@ block content
                                 a.post-category(href="/hashtag/#{hashtag}") #&nbsp;#{hashtag}
             div.post-description
                 !{post.getRenderedContent()}
+        script
+            jQuery(document).ready(function(){
+                jQuery.goup();});
