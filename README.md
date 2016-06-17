@@ -1,7 +1,7 @@
 # Blog  
 
 ## 简介
-Blog 是一款使用java开发的，十分简洁的博客系统,目前正在我的[个人网站](#)上运行。
+Blog 是一款使用java开发的，十分简洁的博客系统,目前正在我的[个人网站](http://120.25.77.189/)上运行。
 
 这个项目是为了学习Spring框架和MongoDB应运而生的，欢迎大家提交 Pull request 和 Issue。
 这个项目参考学习了[SpringBlog](https://github.com/Raysmond/SpringBlog)。
@@ -38,7 +38,7 @@ Blog 使用了下列的框架和开源项目
 
 -----
              
-Blog is a very simple blog system that developed by java ,I have put it on my [website](#)。
+Blog is a very simple blog system that developed by java ,I have put it on my [website](http://120.25.77.189/).
 
 Blog is powered by following frameworks:
 
