@@ -1,25 +1,32 @@
 package com.doppler.blog.models;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Field;
-
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
  * Created by doppler on 2016/5/28.
  */
+@MappedSuperclass
 public abstract class BaseModel implements Serializable {
 
 
     @Id
-    protected String id;
-    @Field(value = "createdAt")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @NotNull
+    protected Integer id;
+    @Column(name = "createdAt")
     protected String createdAt;
-    @Field(value = "updatedAt")
+    @Column(name = "updatedAt")
     protected String updatedAt;
 
-    public String getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCreatedAt() {

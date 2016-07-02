@@ -1,26 +1,27 @@
 package com.doppler.blog.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+
+import javax.persistence.Column;
+import javax.persistence.Table;
 
 /**
  * Created by doppler on 2016/5/19.
  */
-@Document
+@Table(name = "user")
 public class User extends BaseModel {
 
     private static final long serialVersionUID = -9127607570454530499L;
-    @Field(value = "username")
+    public static final String ROLE_ADMIN = "ADMIN";
+    @Column(name = "username")
     private String username;
-    @Field(value = "email")
+    @Column(name = "email")
     private String email;
     @JsonIgnore
-    @Field(value = "password")
+    @Column(name = "password")
     private String password;
-    @Field(value = "role")
-    private String role = "ADMIN";
-
+    @Column(name = "role")
+    private String role = ROLE_ADMIN;
 
     public String getUsername() {
         return username;
@@ -28,14 +29,6 @@ public class User extends BaseModel {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getEmail() {
