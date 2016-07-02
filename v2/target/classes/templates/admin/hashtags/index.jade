@@ -1,0 +1,22 @@
+extends ../layout/admin
+block content
+    div.container
+        h1 Hashtags
+        hr
+        if( hashtags != null)
+            .row(style="margin-top: 10px;")
+                .col-sm-12
+                    table.pure-table.pure-table-bordered
+                        thead
+                            tr
+                                th ID
+                                th Name
+                                th.operations Operations
+                        tbody
+                            for tag in hashtags
+                                tr
+                                    td #{tag.getId()}
+                                    td #{tag.getName()}
+                                    td.operations
+                                        a.btn.btn-xs.btn-danger.btn-delete.btn-flat(href="javascript:;", onclick="deleteTag('#{tag.getId()}','#{tag.getName()}')")
+                                            i.fa.fa-trash-o

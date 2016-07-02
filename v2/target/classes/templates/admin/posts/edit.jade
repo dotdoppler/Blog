@@ -1,0 +1,61 @@
+extends ../layout/admin
+block head
+  script(src="/webjars/ace/1.2.0/src-min/ace.js")
+  script(src="/webjars/ace/1.2.0/src-min/theme-github.js")
+  script(src="/webjars/ace/1.2.0/src-min/mode-markdown.js")
+block content
+  div.container
+    h1 Edit Post
+    hr
+    form.post-form(method="post",action="/admin/posts/#{post.getId()}")
+      .item-row
+        input.form-control(type="text", name="title", value='#{postForm.getTitle()}',,required="required")
+      .item-row
+        textarea.form-control#content(name="content", style="display:none;")
+          = postForm.getContent()
+        div#content-editor
+          #{postForm.getContent()}
+      .item-row
+        hr
+        .row
+          .col-sm-3
+            span Format
+            select.form-control(name="postFormat")
+              for format in postFormats
+                if format != postForm.getPostFormat()
+                  option(value="#{format.getId()}") #{format.getDisplayName()}
+                else
+                  option(value="#{format.getId()}", selected="selected") #{format.getDisplayName()}
+          .col-sm-3
+            span Status
+            select.form-control(name="postStatus")
+              for status in postStatus
+                if status != postForm.getPostStatus()
+                  option(value="#{status.getId()}") #{status.getName()}
+                else
+                  option(value="#{status.getId()}", selected="selected") #{status.getName()}
+          .col-sm-3
+            span link
+            input.form-control(name="link", value="#{postForm.getLink()}",required="required")
+          .col-sm-3
+            span Hashtags
+            input.form-control(name="hashtags", value="#{postForm.getHashtags()}")
+      .item-row
+        hr
+        button.btn.btn-primary.btn-block.btn-flat(type="submit") Save
+
+    script
+      var editor = ace.edit("content-editor");
+      editor.setTheme("ace/theme/github");
+
+      var MarkdownMode = ace.require("ace/mode/markdown").Mode;
+      editor.getSession().setMode(new MarkdownMode());
+
+      editor.getSession().setUseWrapMode(true);
+
+      $("form").submit(function(){
+          $("#content").val(editor.getValue());
+          return true;
+      });
+
+

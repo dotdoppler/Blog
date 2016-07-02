@@ -1,0 +1,23 @@
+extends ../layout/app
+block content
+    div.content#main
+        div.header
+            h1 #{settings.getSiteName()}
+            h2 #{settings.getSlogan()}
+        div.content(style="text-align:center;")
+            br
+            img.pure-img-responsive(src="/images/cover.jpg")
+        br
+        h1.content-subhead Notification
+            h2.pure-menu-link(style="padding-left: initial;")
+                #{settings.getNotification()}
+        h1.content-subhead RECENT POSTS
+            for post in recentPosts
+                h2
+                    a.pure-menu-link(href="/posts/#{post.getLink()}",style="padding-left: initial;")
+                        = post.getTitle()
+        div(style="text-align:center;")
+            a.btn-flat.pure-button.button-small(href="/posts/archive") More
+
+
+
