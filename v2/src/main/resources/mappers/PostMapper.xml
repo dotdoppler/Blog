@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.doppler.blog.mappers.PostMapper">
     <select id="findRecentPosts" resultType="Post" useCache="true">
-    SELECT title,link FROM post  ORDER BY id DESC LIMIT 3
+    SELECT title,link FROM post ORDER BY id DESC LIMIT 3
+    </select>
+    <select id="findAllPostsByStatus" resultType="Post" useCache="true">
+        SELECT title,link,createdAt FROM post WHERE postStatus = #{postStatus} ORDER BY id DESC
+    </select>
+    <select id="getById" resultType="Post" useCache="true">
+        SELECT * FROM post WHERE id = #{postId}
+    </select>
+    <select id="getByLink" resultType="Post" useCache="true">
+        SELECT * FROM post WHERE link = #{postLink}
+    </select>
+    <select id="findAll" resultType="Post">
+        SELECT id,createdAt,updatedAt,title,link,postStatus,postFormat FROM post
     </select>
 </mapper>

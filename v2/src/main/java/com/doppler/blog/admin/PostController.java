@@ -45,7 +45,7 @@ public class PostController {
         return null;
     }
     @RequestMapping(value = "{postId}",method = {RequestMethod.POST,RequestMethod.PUT})
-    public  String updatePost(@PathVariable String postId,@Valid PostForm postForm){
+    public  String updatePost(@PathVariable Long postId,@Valid PostForm postForm){
         Post post = postService.getById(postId);
         DTOUtil.mapTo(postForm, post);
         post.setHashtags(postService.parseHashtagStr(postForm.getHashtags()));
@@ -64,7 +64,7 @@ public class PostController {
     }
 
     @RequestMapping(value = "{postId}/edit")
-    public String editPost(@PathVariable String postId, Model model){
+    public String editPost(@PathVariable Long postId, Model model){
         Post post = postService.getById(postId);
         PostForm postForm = DTOUtil.map(post, PostForm.class);
         postForm.setHashtags(postService.getHashtags_str(post.getHashtags()));

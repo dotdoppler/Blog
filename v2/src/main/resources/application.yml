@@ -1,7 +1,7 @@
 spring:
  datasource:
    driverClassName: com.mysql.cj.jdbc.Driver
-   url:  jdbc:mysql://127.0.0.1:3306/blog?serverTimezone=UTC
+   url:  jdbc:mysql://127.0.0.1:3306/blog?serverTimezone=UTC&useSSL=false
    username: root
    password: root
 jade4j:

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * Created by doppler on 2016/5/24.
@@ -22,9 +21,7 @@ public class PostController {
     PostService postService;
     @RequestMapping(value = {"archive",""},method = RequestMethod.GET)
     public String archive(Model model){
-        List<Post> posts =  postService.getPublishedPosts();
-        model.addAttribute("posts", posts);
-
+        model.addAttribute("posts",  postService.getPublishedPosts());
         return "posts/archive";
     }
     @RequestMapping(value = "{postLink}",method = RequestMethod.GET)

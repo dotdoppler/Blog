@@ -1,7 +1,9 @@
 package com.doppler.blog.mappers;
 
 import com.doppler.blog.models.Post;
+import com.doppler.blog.models.support.PostStatus;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,4 +13,8 @@ import java.util.List;
 @Mapper
 public interface PostMapper {
     List<Post> findRecentPosts();
+    List<Post> findAllPostsByStatus(@Param("postStatus") PostStatus postStatus);
+    Post getById(@Param("postId") Long postId);
+    Post getByLink(@Param("postLink") String postLink);
+    List<Post> findAll();
 }

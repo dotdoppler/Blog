@@ -4,6 +4,7 @@ import com.doppler.blog.GlobalConstants;
 import com.doppler.blog.dao.PostDao;
 import com.doppler.blog.models.Post;
 import com.doppler.blog.models.support.PostFormat;
+import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.utils.DateFormatter;
 import com.doppler.blog.utils.Markdown;
 import org.slf4j.Logger;
@@ -28,10 +29,6 @@ import java.util.Set;
 public class PostService {
     @Resource
     private PostDao postDao;
-    //@Resource
-    //private RecentPostsRepository recentPostsRepository;
-//    @Resource
-//    MongoOperations mongoOperations;
     @Resource
     HashtagService hashtagService;
 
@@ -53,8 +50,7 @@ public class PostService {
     @Cacheable(value = CACHE_POST_ARCHIVE)
     public List<Post> getPublishedPosts(){
         logger.info("not cache,get post archive form db");
-        //return postRepository.findAllPostsByStatus(PostStatus.PUBLISHED,new Sort(Sort.Direction.DESC,"_id"));
-        return null;
+        return postDao.findAllPostsByStatus(PostStatus.PUBLISHED);
     }
 
 //    public Page<Post> getPublishedPostsByPage(int page, int pageSize){
@@ -62,21 +58,16 @@ public class PostService {
 //        return postRepository.findAllPostsByStatusAndPage(PostStatus.PUBLISHED, pageRequest);
 //    }
 
-    public Post getById(String postId){
-
-        //return postRepository.findOne(postId);
-        return  null;
+    public Post getById(Long postId){
+        return  postDao.getById(postId);
     }
 
     public Post getByLink(String postLink){
-        //return postRepository.getByLink(postLink);
-        return null;
+        return postDao.getByLink(postLink);
     }
 
     public List<Post> findAllPosts(){
-
-        return null;
-        //return postRepository.findAll(new Sort(Sort.Direction.DESC,"_id"));
+        return postDao.findAll();
     }
 
     @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
