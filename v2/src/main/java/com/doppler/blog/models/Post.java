@@ -4,6 +4,7 @@ import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import org.springframework.util.StringUtils;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,7 +29,7 @@ public class Post extends BaseModel {
     private PostFormat postFormat = PostFormat.MARKDOWN;
 
 
-    private Set<String> hashtags;
+    private Set<Hashtag> hashtags = new HashSet<>();
 
 
     public String getRenderedContent() {
@@ -79,11 +80,11 @@ public class Post extends BaseModel {
         this.title = title;
     }
 
-    public Set<String> getHashtags() {
+    public Set<Hashtag> getHashtags() {
         return hashtags;
     }
 
-    public void setHashtags(Set<String> hashtags) {
+    public void setHashtags(Set<Hashtag> hashtags) {
         this.hashtags = hashtags;
     }
 

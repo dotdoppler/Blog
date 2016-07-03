@@ -30,6 +30,7 @@ public class PostController {
         if (post == null)
             throw new  NotFoundException("");
         model.addAttribute("hashtags",post.getHashtags());
+        System.out.println(post.getHashtags());
         model.addAttribute("post",post);
         return "posts/post";
     }
