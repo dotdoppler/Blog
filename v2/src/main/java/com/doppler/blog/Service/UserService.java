@@ -19,7 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Collections;
 
 /**
@@ -34,7 +33,7 @@ public class UserService implements UserDetailsService {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }
-    @Resource
+    //@Resource
     private UserRepository userRepository;
 
     public User findByUsername(String username){
@@ -56,7 +55,7 @@ public class UserService implements UserDetailsService {
 
         if (passwordEncoder().matches(password,user.getPassword())) {
             user.setPassword(passwordEncoder().encode(newPassword));
-            userRepository.save(user);
+           // userRepository.save(user);
             logger.info(GlobalConstants.UPDATEPWD.value());
         }
 

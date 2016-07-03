@@ -1,31 +1,23 @@
 package com.doppler.blog.models;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
  * Created by doppler on 2016/5/28.
  */
-@MappedSuperclass
 public abstract class BaseModel implements Serializable {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     @NotNull
-    protected Integer id;
-    @Column(name = "createdAt")
+    protected Long id;
     protected String createdAt;
-    @Column(name = "updatedAt")
     protected String updatedAt;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

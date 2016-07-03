@@ -1,8 +1,6 @@
 package com.doppler.blog.models.support;
 
-/**
- * @author Raysmond<i@raysmond.com>
- */
+
 public enum PostStatus {
     DRAFT("Draft"),
     PUBLISHED("Published");

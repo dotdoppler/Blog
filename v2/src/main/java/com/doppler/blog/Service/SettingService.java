@@ -1,8 +1,8 @@
 package com.doppler.blog.Service;
 
 import com.doppler.blog.GlobalConstants;
+import com.doppler.blog.dao.SettingDao;
 import com.doppler.blog.models.Setting;
-import com.doppler.blog.repositories.SettingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,14 +13,17 @@ import javax.annotation.Resource;
 public class SettingService {
     Logger logger = LoggerFactory.getLogger(SettingService.class);
     @Resource
-    SettingRepository settingRepository;
+    private SettingDao settingDao;
 
     public Setting getSetting(){
-        return settingRepository.findAll().get(0);
+        return settingDao.getSetting();
     }
 
     public  Setting updateSetting(Setting setting) {
        logger.info(GlobalConstants.UPDATESETTINGS.value());
-        return settingRepository.insert(setting);
+        //return settingRepository.insert(setting);
+        return null;
     }
+
+
 }

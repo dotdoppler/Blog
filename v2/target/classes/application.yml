@@ -1,17 +1,18 @@
 spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      uri: mongodb://127.0.0.1/blog/
-      database: blog
-      repositories:
-        enabled: true
-  jade4j:
-      caching: true
+ datasource:
+   driverClassName: com.mysql.cj.jdbc.Driver
+   url:  jdbc:mysql://127.0.0.1:3306/blog?serverTimezone=UTC
+   username: root
+   password: root
+jade4j:
+    caching: false
 server:
   error:
     whitelabel:
       enabled: false
   port:
-      80
+      8080
+#mybatis
+mybatis:
+  type-aliases-package: com.doppler.blog.models
+  mapper-locations: classpath:mappers/*.xml

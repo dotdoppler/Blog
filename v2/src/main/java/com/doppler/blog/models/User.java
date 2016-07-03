@@ -2,25 +2,17 @@ package com.doppler.blog.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-
 /**
  * Created by doppler on 2016/5/19.
  */
-@Table(name = "user")
 public class User extends BaseModel {
 
     private static final long serialVersionUID = -9127607570454530499L;
     public static final String ROLE_ADMIN = "ADMIN";
-    @Column(name = "username")
     private String username;
-    @Column(name = "email")
     private String email;
     @JsonIgnore
-    @Column(name = "password")
     private String password;
-    @Column(name = "role")
     private String role = ROLE_ADMIN;
 
     public String getUsername() {

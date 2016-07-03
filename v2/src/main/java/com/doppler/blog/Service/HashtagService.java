@@ -1,16 +1,12 @@
 package com.doppler.blog.Service;
 
-import com.doppler.blog.GlobalConstants;
 import com.doppler.blog.models.Hashtag;
 import com.doppler.blog.repositories.HashtagRepository;
-import com.doppler.blog.utils.DateFormatter;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +15,7 @@ import java.util.List;
 @Service
 public class HashtagService {
 
-    @Resource
+    //@Resource
     HashtagRepository hashtagRepository;
 
     private static final String CACHE_TAGS = "tags";
@@ -29,12 +25,12 @@ public class HashtagService {
     @CacheEvict(value = CACHE_TAGS, allEntries = true)
     public Hashtag findOrCreateByName(String name){
         Hashtag hashtag = hashtagRepository.findByName(name);
-        if(hashtag == null || hashtag.getName().isEmpty()) {
-            hashtag = new Hashtag(name);
-            hashtag.setCreatedAt(DateFormatter.format(new Date()));
-            hashtagRepository.insert(hashtag);
-            logger.info(GlobalConstants.INSERTHASHTAG.value());
-        }
+//        if(hashtag == null || hashtag.getName().isEmpty()) {
+//            hashtag = new Hashtag(name);
+//            hashtag.setCreatedAt(DateFormatter.format(new Date()));
+//            hashtagRepository.insert(hashtag);
+//            logger.info(GlobalConstants.INSERTHASHTAG.value());
+//        }
         return hashtag;
     }
     public Hashtag findByName(String tagName){
@@ -44,11 +40,12 @@ public class HashtagService {
     @Cacheable(value = CACHE_TAGS)
     public List<Hashtag> findAll(){
         logger.info("not caches,get all tags from db");
-        return hashtagRepository.findAll();
+       // return hashtagRepository.findAll();
+        return null;
     }
 
     @CacheEvict(value = CACHE_TAGS, allEntries = true)
     public void deleteTag(String hashtagId) {
-        hashtagRepository.delete(hashtagId);
+       // hashtagRepository.delete(hashtagId);
     }
 }

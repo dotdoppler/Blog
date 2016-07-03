@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.doppler.blog.mappers.PostMapper">
+    <select id="findRecentPosts" resultType="Post" useCache="true">
+    SELECT title,link FROM post  ORDER BY id DESC LIMIT 3
+    </select>
+</mapper>

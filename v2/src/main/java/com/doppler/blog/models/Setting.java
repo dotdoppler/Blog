@@ -1,29 +1,18 @@
 package com.doppler.blog.models;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
 import javax.validation.constraints.NotNull;
 
-/**
- * capped collection with only one document
- * db.createCollection("setting",{"capped" : true, "size" : 512, "max" : 1})
 
- * Created by doppler on 2016/5/28.
- */
-@Document(collection = "setting")
+
 public class Setting extends BaseModel {
 
     private static final long serialVersionUID = 9127040950888014691L;
     @NotNull
-    @Field(value = "siteName")
     private String siteName;
 
     @NotNull
-    @Field(value = "slogan")
     private String slogan;
 
-    @Field(value = "notification")
     private String notification;
 
     public String getSiteName() {

@@ -1,10 +1,9 @@
 package com.doppler.blog.Service;
 
 import com.doppler.blog.GlobalConstants;
+import com.doppler.blog.dao.PostDao;
 import com.doppler.blog.models.Post;
 import com.doppler.blog.models.support.PostFormat;
-import com.doppler.blog.repositories.PostRepository;
-import com.doppler.blog.repositories.RecentPostsRepository;
 import com.doppler.blog.utils.DateFormatter;
 import com.doppler.blog.utils.Markdown;
 import org.slf4j.Logger;
@@ -28,9 +27,9 @@ import java.util.Set;
 @Service
 public class PostService {
     @Resource
-    private PostRepository postRepository;
-    @Resource
-    private RecentPostsRepository recentPostsRepository;
+    private PostDao postDao;
+    //@Resource
+    //private RecentPostsRepository recentPostsRepository;
 //    @Resource
 //    MongoOperations mongoOperations;
     @Resource
@@ -64,11 +63,14 @@ public class PostService {
 //    }
 
     public Post getById(String postId){
-        return postRepository.findOne(postId);
+
+        //return postRepository.findOne(postId);
+        return  null;
     }
 
     public Post getByLink(String postLink){
-        return postRepository.getByLink(postLink);
+        //return postRepository.getByLink(postLink);
+        return null;
     }
 
     public List<Post> findAllPosts(){
@@ -79,7 +81,7 @@ public class PostService {
 
     @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
     public void deletePost(String postId){
-        postRepository.delete(postId);
+        //postRepository.delete(postId);
         logger.info(GlobalConstants.DELETEPOST.value() + postId);
     }
     @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
@@ -94,18 +96,7 @@ public class PostService {
         logger.info(GlobalConstants.UPDATEPOST.value() + post.getTitle());
     }
     public List<Post> getRecentPosts(){
-        List<Post> recentPosts = null;
-//        List<RecentPosts> list = recentPostsRepository.findAll();
-//        if (list.size() > 0){
-//            recentPosts = new ArrayList<Post>();
-//            Post post;
-//            for(int i = list.size() - 1;i > -1;i--) {
-//                post = postRepository.findOne(list.get(i).getPostId());
-//                if (post != null)
-//                recentPosts.add(post);
-//            }
-//        }
-        return recentPosts;
+        return postDao.findRecentPosts();
     }
 
     public Set<String> parseHashtagStr(String hashtags_str){
