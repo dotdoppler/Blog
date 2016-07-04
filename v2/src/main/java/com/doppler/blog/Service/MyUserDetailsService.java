@@ -1,13 +1,14 @@
 package com.doppler.blog.Service;
 
+import com.doppler.blog.dao.UserDao;
 import com.doppler.blog.models.User;
-import com.doppler.blog.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +18,13 @@ import java.util.List;
 @Service
 public class MyUserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
-    //@Resource
-    private UserRepository userRepository;
+    @Resource
+    private UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        User user = userDao.findByUsername(username);
+        List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(user.getRole()));
 
         return buildUserForAuthentication(user,authorities);
