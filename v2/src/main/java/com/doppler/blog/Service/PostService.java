@@ -111,7 +111,7 @@ public class PostService {
     }
 
     public List<Post> getPostsByTag(String tagName) {
-       return null;
-       // return postRepository.getByHashtag(tagName,new Sort(Sort.Direction.DESC,"_id"));
+
+       return postDao.getByHashtag(tagName);
     }
 }

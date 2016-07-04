@@ -9,8 +9,8 @@ block content
                 h1.post-title.text-center #{post.getTitle()}
                 if (post.getCreatedAt() != null)
                     p.post-meta(style="margin-left:0;")  #{post.getCreatedAt()}&nbsp;
-                        if(hashtags != null)
-                            for hashtag in hashtags
+                        if(post.getHashtags()!= null)
+                            for hashtag in post.getHashtags()
                                 a.post-category(href="/hashtag/#{hashtag}") #&nbsp;#{hashtag}
             div.post-description
                 !{post.getRenderedContent()}

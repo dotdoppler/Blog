@@ -21,7 +21,7 @@ public class PostDao extends BaseDao{
     }
 
     public Post getById(Long postId) {
-        return sqlSession.selectOne("getById",postId);
+        return sqlSession.selectOne("getPostById",postId);
     }
 
     public Post getByLink(String postLink) {
@@ -29,6 +29,10 @@ public class PostDao extends BaseDao{
     }
 
     public List<Post> findAll() {
-        return sqlSession.selectList("findAll");
+        return sqlSession.selectList("findAllPosts");
+    }
+
+    public List<Post> getByHashtag(String tagName) {
+        return sqlSession.selectList("getPostsByHashtag",tagName);
     }
 }

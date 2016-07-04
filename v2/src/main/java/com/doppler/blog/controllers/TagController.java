@@ -21,9 +21,9 @@ import java.util.List;
 @RequestMapping("hashtag")
 public class TagController {
     @Resource
-    HashtagService hashtagService;
+    private HashtagService hashtagService;
     @Resource
-    PostService postService;
+    private PostService postService;
 
     @RequestMapping(value = "all",method = RequestMethod.GET)
     public String AllTag(Model model){
@@ -34,7 +34,7 @@ public class TagController {
     @RequestMapping(value = "{tagName}",method = RequestMethod.GET)
         public String showPosts(@PathVariable String tagName,Model model){
         Hashtag hashtag = hashtagService.findByName(tagName);
-        if (hashtag == null || hashtag.getName().isEmpty())
+        if (hashtag == null)
             throw new  NotFoundException();
         model.addAttribute("hashtag",hashtag.getName());
         List<Post> posts = postService.getPostsByTag(hashtag.getName());

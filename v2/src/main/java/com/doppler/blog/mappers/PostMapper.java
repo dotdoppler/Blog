@@ -14,7 +14,8 @@ import java.util.List;
 public interface PostMapper {
     List<Post> findRecentPosts();
     List<Post> findAllPostsByStatus(@Param("postStatus") PostStatus postStatus);
-    Post getById(@Param("postId") Long postId);
+    Post getPostById(@Param("postId") Long postId);
     Post getByLink(@Param("postLink") String postLink);
-    List<Post> findAll();
+    List<Post> findAllPosts();
+    List<Post> getPostsByHashtag(@Param("tagName") String tagName);
 }
