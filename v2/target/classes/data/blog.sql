@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50708
 File Encoding         : 65001
 
-Date: 2016-07-04 12:04:54
+Date: 2016-07-04 21:58:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -97,7 +97,7 @@ CREATE TABLE `setting` (
 -- ----------------------------
 -- Records of setting
 -- ----------------------------
-INSERT INTO `setting` VALUES ('1', 'doppler', 'Hi', 'Hello', '2016-07-03 11:15:55', '');
+INSERT INTO `setting` VALUES ('1', 'Playground', 'Hi, There', 'Hello,World', '2016-07-03 11:15:55', '');
 
 -- ----------------------------
 -- Table structure for user
@@ -117,3 +117,4 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', '2016-07-04 14:27:17', '2016-07-04 14:27:20', 'admin', 'xx@gmail.yy', '$2a$10$H2seEImwPocE8F83sIYXqOFC5n0gI97K8aiWCY9g/DBK3M1K4r8ea', 'ADMIN');
