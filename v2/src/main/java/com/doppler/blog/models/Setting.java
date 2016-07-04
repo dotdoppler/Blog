@@ -38,4 +38,6 @@ public class Setting extends BaseModel {
     public void setNotification(String notification) {
         this.notification = notification;
     }
+
+
 }

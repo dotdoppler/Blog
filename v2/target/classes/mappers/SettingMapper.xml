@@ -4,5 +4,8 @@
     <select id="find" useCache="true" resultType="Setting">
         SELECT * FROM setting
     </select>
-
+    <update id="updateSetting" flushCache="true" parameterType="Setting">
+        UPDATE setting SET siteName = #{siteName},slogan = #{slogan},notification = #{notification}
+        WHERE id = 1
+    </update>
 </mapper>

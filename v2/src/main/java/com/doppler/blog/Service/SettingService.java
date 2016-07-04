@@ -18,11 +18,10 @@ public class SettingService {
     public Setting getSetting(){
         return settingDao.getSetting();
     }
-
     public  Setting updateSetting(Setting setting) {
        logger.info(GlobalConstants.UPDATESETTINGS.value());
-        //return settingRepository.insert(setting);
-        return null;
+        settingDao.updateSetting(setting);
+        return setting;
     }
 
 

@@ -1,6 +1,5 @@
 package com.doppler.blog.models;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -8,7 +7,6 @@ import java.io.Serializable;
  */
 public abstract class BaseModel implements Serializable {
 
-    @NotNull
     protected Long id;
     protected String createdAt;
     protected String updatedAt;
