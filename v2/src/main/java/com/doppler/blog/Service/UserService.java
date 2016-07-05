@@ -57,7 +57,7 @@ public class UserService implements UserDetailsService {
 
         if (passwordEncoder().matches(password,user.getPassword())) {
             user.setPassword(passwordEncoder().encode(newPassword));
-           // userRepository.save(user);
+            userDao.updateUser(user);
             logger.info(GlobalConstants.UPDATEPWD.value());
         }
 

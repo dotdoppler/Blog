@@ -48,7 +48,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "hashtags/{hashtagId}",method = RequestMethod.DELETE)
-    public @ResponseBody String deleteHashtag(@PathVariable String hashtagId){
+    public @ResponseBody String deleteHashtag(@PathVariable Long hashtagId){
         hashtagService.deleteTag(hashtagId);
         return null;
     }

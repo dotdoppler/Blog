@@ -5,7 +5,9 @@
         SELECT name FROM hashtag WHERE name = #{name}
     </select>
     <select id="findAllTags" resultType="Hashtag">
-        SELECT name FROM hashtag
+        SELECT id,name FROM hashtag
     </select>
-
+    <delete id="deleteTagById" flushCache="true">
+        DELETE FROM hashtag WHERE id = #{id}
+    </delete>
 </mapper>

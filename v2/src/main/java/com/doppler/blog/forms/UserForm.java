@@ -12,6 +12,8 @@ public class UserForm {
     @NotNull
     private String newPassword;
 
+    private String email;
+
     public String getPassword() {
         return password;
     }
@@ -26,5 +28,13 @@ public class UserForm {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

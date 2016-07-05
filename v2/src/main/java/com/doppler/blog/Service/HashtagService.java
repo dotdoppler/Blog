@@ -45,7 +45,7 @@ public class HashtagService {
     }
 
     @CacheEvict(value = CACHE_TAGS, allEntries = true)
-    public void deleteTag(String hashtagId) {
-       // hashtagRepository.delete(hashtagId);
+    public void deleteTag(Long hashtagId) {
+        hashtagDao.delete(hashtagId);
     }
 }

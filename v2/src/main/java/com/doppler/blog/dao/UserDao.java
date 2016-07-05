@@ -12,4 +12,8 @@ public class UserDao extends BaseDao{
     public User findByUsername(String username) {
         return sqlSession.selectOne("findByUsername",username);
     }
+
+    public void updateUser(User user) {
+        sqlSession.update("updateUser",user);
+    }
 }

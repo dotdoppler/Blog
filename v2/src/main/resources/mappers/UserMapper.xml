@@ -4,4 +4,7 @@
     <select id="findByUsername" resultType="User" useCache="true">
         SELECT * FROM user WHERE username = #{username}
     </select>
+    <update id="updateUser" parameterType="User" flushCache="true">
+    UPDATE user SET email = #{email},password = #{password} WHERE id = 1
+    </update>
 </mapper>

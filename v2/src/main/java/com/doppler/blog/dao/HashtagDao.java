@@ -17,4 +17,8 @@ public class HashtagDao extends BaseDao{
     public List<Hashtag> findAll() {
         return sqlSession.selectList("findAllTags");
     }
+
+    public void delete(Long hashtagId) {
+        sqlSession.delete("deleteTagById",hashtagId);
+    }
 }

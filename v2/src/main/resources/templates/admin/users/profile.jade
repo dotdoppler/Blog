@@ -15,7 +15,9 @@ block content
             hr
             .row
                 .col-sm-2 Email
-                .col-sm-3 #{user.getEmail()}
+                .col-sm-3
+                    input.form-control(name="email",value="#{user.getEmail()}")
+
             hr
             .row
                 .col-sm-2 Created Time

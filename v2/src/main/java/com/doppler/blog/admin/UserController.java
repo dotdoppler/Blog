@@ -28,6 +28,7 @@ public class UserController {
     @RequestMapping(value = "admin/user/{username}",method = RequestMethod.POST)
     public String updatePwd(@PathVariable String username, UserForm userForm,Model model){
         User user = userService.findByUsername(username);
+        user.setEmail(userForm.getEmail());
         userService.changePassword(user,userForm.getPassword(),userForm.getNewPassword());
         return "redirect:profile";
     }
