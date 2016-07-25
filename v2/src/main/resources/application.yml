@@ -14,5 +14,5 @@ server:
       8080
 #mybatis
 mybatis:
-  type-aliases-package: com.doppler.blog.models
+  type-aliases-package: com.doppler.blog.models,com.doppler.blog.forms
   mapper-locations: classpath:mappers/*.xml

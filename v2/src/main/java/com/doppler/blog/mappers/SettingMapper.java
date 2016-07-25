@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SettingMapper {
-    Setting find();
-    void updateSetting(Setting setting);
+    Setting getSettings();
+    void updateSettings(Setting setting);
 }

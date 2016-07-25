@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50708
 File Encoding         : 65001
 
-Date: 2016-07-04 21:58:56
+Date: 2016-07-05 21:53:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,20 +65,26 @@ INSERT INTO `post` VALUES ('3', '2016-07-03 17:48:00', null, 'rootless tree', 'r
 DROP TABLE IF EXISTS `posts_tags`;
 CREATE TABLE `posts_tags` (
   `id` bigint(20) NOT NULL,
-  `post_id` bigint(20) NOT NULL,
-  `tag_id` bigint(20) NOT NULL,
+  `post_id` bigint(20) DEFAULT NULL,
+  `tag_id` bigint(20) DEFAULT NULL,
+  `createdAt` bigint(20) DEFAULT NULL,
+  `updatedAt` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `posts_tags_post_id_fk` (`post_id`),
   KEY `posts_tags_hashtag_id_fk` (`tag_id`),
-  CONSTRAINT `posts_tags_hashtag_id_fk` FOREIGN KEY (`tag_id`) REFERENCES `hashtag` (`id`),
-  CONSTRAINT `posts_tags_post_id_fk` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`)
+  CONSTRAINT `posts_tags_hashtag_id_fk` FOREIGN KEY (`tag_id`) REFERENCES `hashtag` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `posts_tags_post_id_fk` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of posts_tags
 -- ----------------------------
-INSERT INTO `posts_tags` VALUES ('1', '1', '1');
-INSERT INTO `posts_tags` VALUES ('2', '2', '1');
-INSERT INTO `posts_tags` VALUES ('3', '1', '2');
+INSERT INTO `posts_tags` VALUES ('1', '1', '1', null, null);
+INSERT INTO `posts_tags` VALUES ('2', '1', '2', null, null);
+INSERT INTO `posts_tags` VALUES ('3', '2', '3', null, null);
+INSERT INTO `posts_tags` VALUES ('4', '2', '2', null, null);
+INSERT INTO `posts_tags` VALUES ('5', '1', null, null, null);
+INSERT INTO `posts_tags` VALUES ('6', '1', null, null, null);
 
 -- ----------------------------
 -- Table structure for setting
@@ -97,7 +103,7 @@ CREATE TABLE `setting` (
 -- ----------------------------
 -- Records of setting
 -- ----------------------------
-INSERT INTO `setting` VALUES ('1', 'Playground', 'Hi, There', 'Hello,World', '2016-07-03 11:15:55', '');
+INSERT INTO `setting` VALUES ('1', 'How Are You ?', 'Hi, There', 'Hello,World', '2016-07-03 11:15:55', '');
 
 -- ----------------------------
 -- Table structure for user
@@ -117,4 +123,4 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '2016-07-04 14:27:17', '2016-07-04 14:27:20', 'admin', 'xx@gmail.yy', '$2a$10$H2seEImwPocE8F83sIYXqOFC5n0gI97K8aiWCY9g/DBK3M1K4r8ea', 'ADMIN');
+INSERT INTO `user` VALUES ('1', '2016-07-04 14:27:17', '2016-07-04 14:27:20', 'admin', 'xyz@gmail.pp', '$2a$10$ms6NpV4F6hjql2da/ogQ6u/bOINsk/w.JEDRoMPj0Pu8xWL1mtC32', 'ADMIN');

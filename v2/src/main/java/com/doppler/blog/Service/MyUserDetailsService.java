@@ -1,6 +1,6 @@
 package com.doppler.blog.Service;
 
-import com.doppler.blog.dao.UserDao;
+import com.doppler.blog.mappers.UserMapper;
 import com.doppler.blog.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,11 +19,11 @@ import java.util.List;
 public class MyUserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
     @Resource
-    private UserDao userDao;
+    private UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(username);
+        User user = userMapper.findByUsername(username);
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(user.getRole()));
 

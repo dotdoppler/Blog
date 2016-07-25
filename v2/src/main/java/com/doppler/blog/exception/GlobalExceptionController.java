@@ -18,6 +18,7 @@ public class GlobalExceptionController {
     @ExceptionHandler(NotFoundException.class)
     public ModelAndView handleNotFoundException(HttpServletRequest request,NotFoundException ex){
         ModelAndView model = new ModelAndView("error/generic_error");
+        ex.printStackTrace();
         return setModel(model,request.getRequestURI(),HttpStatus.NOT_FOUND.value(),
                 HttpStatus.NOT_FOUND.getReasonPhrase());
     }
@@ -26,6 +27,7 @@ public class GlobalExceptionController {
     @ExceptionHandler(Exception.class)
     public ModelAndView handleAllException(HttpServletRequest request,Exception ex){
         ModelAndView model = new ModelAndView("error/generic_error");
+        ex.printStackTrace();
         return setModel(model,request.getRequestURI(),ex.getMessage(),
                 ex.getCause());
     }

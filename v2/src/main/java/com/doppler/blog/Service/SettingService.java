@@ -1,7 +1,7 @@
 package com.doppler.blog.Service;
 
 import com.doppler.blog.GlobalConstants;
-import com.doppler.blog.dao.SettingDao;
+import com.doppler.blog.mappers.SettingMapper;
 import com.doppler.blog.models.Setting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,14 +13,14 @@ import javax.annotation.Resource;
 public class SettingService {
     Logger logger = LoggerFactory.getLogger(SettingService.class);
     @Resource
-    private SettingDao settingDao;
+    private SettingMapper settingMapper;
 
     public Setting getSetting(){
-        return settingDao.getSetting();
+        return settingMapper.getSettings();
     }
     public  Setting updateSetting(Setting setting) {
        logger.info(GlobalConstants.UPDATESETTINGS.value());
-        settingDao.updateSetting(setting);
+        settingMapper.updateSettings(setting);
         return setting;
     }
 

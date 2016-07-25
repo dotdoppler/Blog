@@ -1,8 +1,8 @@
 package com.doppler.blog.Service;
 
 import com.doppler.blog.GlobalConstants;
-import com.doppler.blog.dao.UserDao;
 import com.doppler.blog.exception.NotFoundException;
+import com.doppler.blog.mappers.UserMapper;
 import com.doppler.blog.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +30,7 @@ public class UserService implements UserDetailsService {
 
     Logger logger = LoggerFactory.getLogger(UserService.class);
     @Resource
-    private UserDao userDao;
+    UserMapper userMapper;
     @Bean
     private PasswordEncoder passwordEncoder(){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
 
 
     public User findByUsername(String username){
-        User user = userDao.findByUsername(username);
+        User user = userMapper.findByUsername(username);
         if (user == null)
             throw new NotFoundException(username + " Not Found");
         return user;
@@ -51,13 +51,13 @@ public class UserService implements UserDetailsService {
             return null;
         }
         String username = ((org.springframework.security.core.userdetails.User)auth.getPrincipal()).getUsername();
-        return userDao.findByUsername(username);
+        return userMapper.findByUsername(username);
     }
     public void changePassword(User user,String password, String newPassword){
 
         if (passwordEncoder().matches(password,user.getPassword())) {
             user.setPassword(passwordEncoder().encode(newPassword));
-            userDao.updateUser(user);
+            userMapper.updateUser(user);
             logger.info(GlobalConstants.UPDATEPWD.value());
         }
 
@@ -65,7 +65,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByUsername(username);
+        User user = userMapper.findByUsername(username);
         if (user == null)
             throw new UsernameNotFoundException("user not found");
 

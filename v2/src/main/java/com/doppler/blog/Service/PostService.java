@@ -1,7 +1,7 @@
 package com.doppler.blog.Service;
 
 import com.doppler.blog.GlobalConstants;
-import com.doppler.blog.dao.PostDao;
+import com.doppler.blog.mappers.PostMapper;
 import com.doppler.blog.models.Hashtag;
 import com.doppler.blog.models.Post;
 import com.doppler.blog.models.support.PostFormat;
@@ -20,16 +20,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-//import org.springframework.data.domain.Sort;
-//import org.springframework.data.mongodb.core.MongoOperations;
 
 /**
  * Created by doppler on 2016/5/23.
  */
 @Service
 public class PostService {
+//    @Resource
+//    private PostDao postDao;
     @Resource
-    private PostDao postDao;
+    private PostMapper postMapper;
     @Resource
     HashtagService hashtagService;
 
@@ -51,7 +51,7 @@ public class PostService {
     @Cacheable(value = CACHE_POST_ARCHIVE)
     public List<Post> getPublishedPosts(){
         logger.info("not cache,get post archive form db");
-        return postDao.findAllPostsByStatus(PostStatus.PUBLISHED);
+        return postMapper.findAllPostsByStatus(PostStatus.PUBLISHED);
     }
 
 //    public Page<Post> getPublishedPostsByPage(int page, int pageSize){
@@ -59,16 +59,16 @@ public class PostService {
 //        return postRepository.findAllPostsByStatusAndPage(PostStatus.PUBLISHED, pageRequest);
 //    }
 
-    public Post getById(Long postId){
-        return  postDao.getById(postId);
+    public Post getPostById(Long postId){
+        return  postMapper.getPostById(postId);
     }
 
     public Post getByLink(String postLink){
-        return postDao.getByLink(postLink);
+        return postMapper.getByLink(postLink);
     }
 
     public List<Post> findAllPosts(){
-        return postDao.findAll();
+        return postMapper.findAllPosts();
     }
 
     @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
@@ -88,7 +88,8 @@ public class PostService {
         logger.info(GlobalConstants.UPDATEPOST.value() + post.getTitle());
     }
     public List<Post> getRecentPosts(){
-        return postDao.findRecentPosts();
+       // return postDao.findRecentPosts();
+        return postMapper.findAllPostsByStatus(PostStatus.PUBLISHED);
     }
 
     public Set<Hashtag> parseHashtagStr(String hashtags_str){
@@ -112,6 +113,6 @@ public class PostService {
 
     public List<Post> getPostsByTag(String tagName) {
 
-       return postDao.getByHashtag(tagName);
+       return postMapper.getPostsByHashtag(tagName);
     }
 }

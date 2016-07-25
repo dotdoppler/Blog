@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.doppler.blog.mappers.PostMapper">
-    <select id="findRecentPosts" resultType="Post" useCache="true">
-    SELECT title,link FROM post ORDER BY id DESC LIMIT 3
+    <select id="findRecentPosts" resultType="Post" >
+        SELECT
+            p.title,
+            p.link
+        FROM
+            post p
+        ORDER BY
+            p.id DESC
+        LIMIT 3
     </select>
-    <select id="findAllPostsByStatus" resultType="Post" useCache="true">
-        SELECT title,link,createdAt FROM post WHERE postStatus = #{postStatus} ORDER BY id DESC
+    <select id="findAllPostsByStatus" resultType="Post">
+        SELECT
+            p.title,
+            p.link,
+            p.createdAt
+        FROM
+            post p
+        WHERE
+            postStatus = #{postStatus}
+        ORDER BY p.id DESC
     </select>
-    <select id="getPostById" resultType="Post" useCache="true">
-        SELECT * FROM post WHERE id = #{postId}
+    <select id="getPostById" resultType="PostForm" >
+        SELECT
+            *
+        FROM
+            post p
+        WHERE
+            p.id = #{postId}
     </select>
-    <select id="getByLink" resultMap="postResultMap" useCache="true">
-        SELECT * FROM post WHERE link = #{postLink}
-    </select>
-    <select id="findAllPosts" resultType="Post">
-        SELECT id,createdAt,updatedAt,title,link,postStatus,postFormat FROM post
-    </select>
-    <select id="getPostsByHashtag" resultType="Post" useCache="true">
-        SELECT title,link,createdAt FROM post WHERE id IN
-        (SELECT post_id FROM posts_tags WHERE tag_id =
-        (SELECT id FROM hashtag WHERE name = #{tagName}))
+    <select id="getByLink" resultMap="postResultMap" >
+        SELECT
+            *
+        FROM
+            post p
+        WHERE
+            p.link = #{postLink}
     </select>
     <resultMap id="postResultMap" type="Post">
         <id property="id" column="id"/>
@@ -32,12 +49,59 @@
         <result property="postStatus" column="postStatus"/>
         <result property="postFormat" column="postFormat"/>
         <collection property="hashtags" javaType="java.util.HashSet" ofType="Hashtag"
-        select="selectTagsForPost" column="id"/>
+                    select="selectTagsForPost" column="id"/>
+    </resultMap>
+    <select id="findAllPosts" resultType="Post" >
+        SELECT
+            p.id,
+            p.createdAt,
+            p.updatedAt,
+            p.title,
+            p.link,
+            p.postStatus,
+            p.postFormat
+        FROM
+            post p
+    </select>
+    <select id="getPostsByHashtag" resultType="Post" >
+        SELECT
+            p.title,
+            p.link,
+            p.createdAt
+        FROM
+            post p
+        WHERE
+            id IN (
+                SELECT
+                    post_id
+                FROM
+                    posts_tags
+                WHERE
+                    tag_id = (
+                        SELECT
+                            id
+                        FROM
+                            hashtag
+                        WHERE
+                            NAME = #{tagName}))
+    </select>
+
+    <resultMap id="hashtagsResultMap" type="Hashtag">
+        <result column="name" property="name"/>
     </resultMap>
     <select id="selectTagsForPost" resultType="Hashtag">
-        SELECT name FROM hashtag WHERE id IN (SELECT tag_id FROM posts_tags WHERE post_id = #{id})
+        SELECT
+            h.name
+        FROM
+            hashtag h
+        WHERE
+            id IN (
+                SELECT
+                    pt.tag_id
+                FROM
+                    posts_tags pt
+                WHERE
+                    pt.post_id = #{id})
     </select>
-    <resultMap id="hashtagsResultMap" type="Hashtag">
-       <result column="name" property="name"/>
-    </resultMap>
+
 </mapper>

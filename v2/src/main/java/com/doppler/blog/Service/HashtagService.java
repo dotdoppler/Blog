@@ -1,6 +1,6 @@
 package com.doppler.blog.Service;
 
-import com.doppler.blog.dao.HashtagDao;
+import com.doppler.blog.mappers.HashtagMapper;
 import com.doppler.blog.models.Hashtag;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
@@ -17,7 +17,7 @@ import java.util.List;
 public class HashtagService {
 
    @Resource
-   private HashtagDao hashtagDao;
+   private HashtagMapper hashtagMapper;
 
     private static final String CACHE_TAGS = "tags";
 
@@ -25,7 +25,7 @@ public class HashtagService {
 
     @CacheEvict(value = CACHE_TAGS, allEntries = true)
     public Hashtag findOrCreateByName(String name){
-        Hashtag hashtag = hashtagDao.findTagByName(name);
+        Hashtag hashtag = hashtagMapper.findTagByName(name);
 //        if(hashtag == null || hashtag.getName().isEmpty()) {
 //            hashtag = new Hashtag(name);
 //            hashtag.setCreatedAt(DateFormatter.format(new Date()));
@@ -35,17 +35,17 @@ public class HashtagService {
         return hashtag;
     }
     public Hashtag findByName(String tagName){
-        return hashtagDao.findTagByName(tagName);
+        return hashtagMapper.findTagByName(tagName);
     }
 
     @Cacheable(value = CACHE_TAGS)
     public List<Hashtag> findAll(){
         logger.info("not caches,get all tags from db");
-        return hashtagDao.findAll();
+        return hashtagMapper.findAllTags();
     }
 
     @CacheEvict(value = CACHE_TAGS, allEntries = true)
     public void deleteTag(Long hashtagId) {
-        hashtagDao.delete(hashtagId);
+        hashtagMapper.deleteTagById(hashtagId);
     }
 }
