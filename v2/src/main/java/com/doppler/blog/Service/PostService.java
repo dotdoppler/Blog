@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -37,14 +38,14 @@ public class PostService {
     private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
     @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
+    @Transactional
     public Post createPost(Post post) {
-//        if (post.getPostFormat() == PostFormat.MARKDOWN) {
-//            post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
-//        }
-//        post.setCreatedAt(DateFormatter.format(new Date()));
-//        post = postRepository.insert(post);
-//        logger.info(GlobalConstants.INSERTPOST.value() + post.getTitle());
-//        recentPostsRepository.insert(new RecentPosts(post.getId()));
+        if (post.getPostFormat() == PostFormat.MARKDOWN) {
+            post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
+        }
+        post.setCreatedAt(DateFormatter.format(new Date()));
+        postMapper.insertPost(post);
+        logger.info(GlobalConstants.INSERTPOST.value() + post.getTitle());
         return post;
     }
 

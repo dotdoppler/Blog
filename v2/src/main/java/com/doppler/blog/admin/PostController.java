@@ -6,6 +6,7 @@ import com.doppler.blog.models.Post;
 import com.doppler.blog.models.support.PostFormat;
 import com.doppler.blog.models.support.PostStatus;
 import com.doppler.blog.utils.DTOUtil;
+import com.doppler.blog.utils.DateFormatter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +38,7 @@ public class PostController {
     public String create(@Valid PostForm postForm){
         Post post = DTOUtil.map(postForm, Post.class);
         post.setHashtags(postService.parseHashtagStr(postForm.getHashtags()));
+        post.setCreatedAt(DateFormatter.format(new Date()));
         postService.createPost(post);
         return "redirect:/admin/posts";
     }

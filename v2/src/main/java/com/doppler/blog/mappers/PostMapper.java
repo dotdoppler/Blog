@@ -18,4 +18,6 @@ public interface PostMapper {
     Post getByLink(@Param("postLink") String postLink);
     List<Post> findAllPosts();
     List<Post> getPostsByHashtag(@Param("tagName") String tagName);
+
+    void insertPost(Post post);
 }

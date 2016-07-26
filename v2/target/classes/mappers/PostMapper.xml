@@ -103,5 +103,18 @@
                 WHERE
                     pt.post_id = #{id})
     </select>
+    <insert id="insertPost" flushCache="true" parameterType="Post" useGeneratedKeys="true" keyProperty="id">
+      INSERT INTO post (
+        createdAt,
+        title,
+        link,
+        content,
+        renderedContent,
+        postStatus,
+        postFormat
+    )
+    VALUES
+        (#{createdAt}, #{title}, #{link}, #{content}, #{renderedContent}, #{postStatus}, #{postFormat})
+    </insert>
 
 </mapper>
