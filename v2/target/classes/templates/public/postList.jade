@@ -1,8 +1,0 @@
-if(posts != null)
-    for post in posts
-        div.content
-            h2
-                li
-                    a.pure-menu-link(href="/posts/#{post.getLink()}") #{post.getTitle()}
-                        p.post-meta(style="font-size :0.5em;{font-family: serif;")
-                            =post.getCreatedAt()
