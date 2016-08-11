@@ -79,12 +79,14 @@ public class PostService {
     }
     @CacheEvict(value = CACHE_POST_ARCHIVE, allEntries = true)
     public void updatePost(Post post){
-        if (post.getPostFormat() == PostFormat.MARKDOWN)
+        if (post.getPostFormat() == PostFormat.MARKDOWN) {
             post.setRenderedContent(Markdown.markdownToHtml(post.getContent()));
+        }
         post.setUpdatedAt(DateFormatter.format(new Date()));
 
-        if(recentPostsRepository.findByPostId(post.getId()) == null)
-        recentPostsRepository.insert(new RecentPosts(post.getId()));
+        if(recentPostsRepository.findByPostId(post.getId()) == null) {
+            recentPostsRepository.insert(new RecentPosts(post.getId()));
+        }
         mongoOperations.save(post);
         logger.info(GlobalConstants.UPDATEPOST.value() + post.getTitle());
     }
@@ -92,30 +94,33 @@ public class PostService {
         List<Post> recentPosts = null;
         List<RecentPosts> list = recentPostsRepository.findAll();
         if (list.size() > 0){
-            recentPosts = new ArrayList<Post>();
+            recentPosts = new ArrayList<>();
             Post post;
             for(int i = list.size() - 1;i > -1;i--) {
                 post = postRepository.findOne(list.get(i).getPostId());
-                if (post != null)
-                recentPosts.add(post);
+                if (post != null) {
+                    recentPosts.add(post);
+                }
             }
         }
         return recentPosts;
     }
 
     public Set<String> parseHashtagStr(String hashtags_str){
-        Set<String> hashtags = new HashSet<String>();
+        Set<String> hashtags = new HashSet<>();
         if(hashtags_str != null && !hashtags_str.isEmpty()){
             String names[] = hashtags_str.split("\\s*,\\s*");
-            for(String name : names)
+            for(String name : names) {
                 hashtags.add(hashtagService.findOrCreateByName(name).getName());
+            }
         }
         return hashtags;
     }
 
     public String getHashtags_str(Set<String> hashtags) {
-        if (hashtags == null || hashtags.isEmpty())
+        if (hashtags == null || hashtags.isEmpty()){
             return "";
+        }
         StringBuilder hashtags_str = new StringBuilder("");
         hashtags.forEach(hashtag -> hashtags_str.append(hashtag).append(","));
         hashtags_str.deleteCharAt(hashtags_str.length() - 1);

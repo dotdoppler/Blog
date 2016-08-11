@@ -1,9 +1,9 @@
 package com.doppler.blog.Service;
 
 import com.doppler.blog.GlobalConstants;
-import com.doppler.blog.exception.NotFoundException;
 import com.doppler.blog.models.User;
 import com.doppler.blog.repositories.UserRepository;
+import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -39,9 +39,7 @@ public class UserService implements UserDetailsService {
 
     public User findByUsername(String username){
         User user = userRepository.findByUsername(username);
-        if (user == null)
-            throw new NotFoundException(username + " Not Found");
-        return user;
+        return  Preconditions.checkNotNull(user,username + " Not Found");
     }
 
     public User getCurrentUser(){
@@ -66,7 +64,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user =userRepository.findByEmail(username);
         if (user == null)
-            throw new UsernameNotFoundException("user not found");
+            throw new UsernameNotFoundException("User Not Found");
 
         return createSpringUser(user);
     }

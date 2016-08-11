@@ -26,7 +26,6 @@ public class MyUserDetailsService implements org.springframework.security.core.u
         User user = userRepository.findByUsername(username);
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(user.getRole()));
-
         return buildUserForAuthentication(user,authorities);
     }
 
